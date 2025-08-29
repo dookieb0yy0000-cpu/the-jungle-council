@@ -1,0 +1,2872 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Jungle Council</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      /* Adjust these to match ape size and exact placement */
+      --overlay-top: 3%;
+      --overlay-left: 10%;
+      --title-size: 106px;   /* larger title */
+      --onbase-size: 42px;  /* larger ON BASE */
+      --btn-font: 24px;     /* larger buttons */
+      --btn-padding-y: 16px;
+      --btn-padding-x: 24px;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('bg.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Press Start 2P', monospace;
+      color: #3a2316;
+    }
+
+    .overlay {
+      position: absolute;
+      top: var(--overlay-top);
+      left: var(--overlay-left);
+      color: #3a2316;
+    }
+
+    .overlay h1 {
+      font-size: var(--title-size);
+      line-height: 1.3;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+
+    .subline {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .subline h2 {
+      font-size: var(--onbase-size);
+      margin: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #3a2316;
+      color: #f5e1c4;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    .btn:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+  
+    .btn-opensea {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #2081e2; /* OpenSea blue */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-opensea:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+    .btn-x {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #000; /* X black */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-x:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+    .btn-minigame {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #2ecc71; /* Minigame green */
+      color: #fff; /* changed from black to white */
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    
+    .btn-unknown {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #555; /* grey mysterious */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-unknown:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+    .btn-minigame:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+  
+    /* Layout row to place text and ape side-by-side */
+    .overlay-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .text-block {
+      display: flex;
+      flex-direction: column;
+    }
+    .ape {
+      height: var(--ape-height, 800px); /* default desktop size; tweak as needed */
+      image-rendering: pixelated;
+      width: auto;
+    }
+    /* Responsive: scale ape relative to viewport so it matches text scale on mobile */
+    @media (max-width: 600px) {
+      :root {
+        --ape-height: 90vw;
+      }
+    }
+
+  
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+
+/* Unify CTA button box metrics to prevent 1-2px vertical misalignment */
+.subline .btn-opensea,
+.subline .btn-x,
+.subline .btn-minigame,
+.subline .btn-memecoin {
+  display: inline-flex !important;
+  align-items: center !important;
+  line-height: 1 !important;
+  box-sizing: border-box !important;
+}
+
+</style>
+<style>
+/* === Spacing tweak: bring ape image and text/buttons closer === */
+:root {
+  --ape-copy-gap: 12px;
+}
+/* Try common hero/container classnames */
+.hero, .hero-inner, .hero-wrap, .content, .content-wrap, .container, .row, .columns, .cols, .grid, .flex {
+  column-gap: var(--ape-copy-gap);
+  gap: var(--ape-copy-gap);
+}
+/* If there is a two-column layout, reduce margins between the two columns */
+.hero > *, .hero-inner > *, .content > *, .content-wrap > *, .container > *, .row > * {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+/* Images in hero: avoid extra right margin */
+.hero img, .hero-inner img, .content img {
+  margin-right: 0 !important;
+}
+/* On small screens keep things tight too */
+@media (max-width: 768px) {
+  .hero, .hero-inner, .content, .content-wrap, .container, .row, .columns, .grid, .flex {
+    gap: 10px;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+/* === Mobile layout overrides (auto-generated) === */
+@media (max-width: 768px) {
+  html, body {
+    height: 100%;
+    overflow-x: hidden;
+  }
+  /* Try common hero/container wrappers */
+  .hero, .hero-inner, .hero-wrap, .content, .content-wrap, .container, .row, .columns, .grid, .flex, section, main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    min-height: 100vh; /* extend to full height */
+    padding: 16px 12px;
+    box-sizing: border-box;
+    background-color: #3d1700; /* extend bg with solid colour */
+    background-image: none !important; /* remove images to keep solid colour */
+  }
+  /* Make sure child blocks don't overflow */
+  .hero > *, .hero-inner > *, .content > *, .content-wrap > *, .container > *, .row > *, section > *, main > * {
+    max-width: 92vw;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  /* Put the image AFTER the text/buttons */
+  .hero > img, .hero-inner > img, .content > img, .content-wrap > img, .container > img, .row > img, section > img, main > img {
+    order: 2;
+  }
+  /* Common image rules to keep it visible but not oversized */
+  img {
+    height: auto !important;
+    max-height: 46vh; /* keep under half screen so text+buttons fit */
+    object-fit: contain;
+    align-self: center;
+  }
+  /* Try to prioritize textual content above image */
+  .copy, .text, .text-wrap, .text-block, .content-left, .content-right, .btns, .buttons, .cta, .cta-wrap, h1, h2, h3, p, ul, .lead {
+    order: 1;
+  }
+  /* Scale headings and text for mobile to fit */
+  h1 { font-size: clamp(22px, 6vw, 32px); line-height: 1.1; margin: 8px 0; }
+  h2 { font-size: clamp(18px, 5vw, 26px); line-height: 1.15; margin: 6px 0; }
+  p, li { font-size: clamp(14px, 4vw, 18px); line-height: 1.35; }
+  /* Buttons: ensure tap-friendly but compact */
+  a.button, button, .btn, .cta a, .cta button {
+    display: inline-block;
+    font-size: clamp(14px, 4.2vw, 18px);
+    padding: 10px 14px;
+    line-height: 1.1;
+    max-width: 92vw;
+    text-align: center;
+    white-space: nowrap;
+  }
+  /* Ensure groups of buttons wrap nicely */
+  .button-group, .btns, .buttons, .cta, .cta-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  /* Avoid huge top/bottom whitespace */
+  .spacer, .gap, .pad, .mt-*, .mb-* {
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  /* Remove excessive margins that might push content off-screen */
+  [style*="margin-top"], [style*="margin-bottom"] {
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+  }
+  /* Prevent sticky/absolute elements from overlapping mobile layout */
+  .hero *, .container *, section * {
+    position: relative !important;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+
+  /* === Mobile fixes injected by ChatGPT (08-22-2025) === */
+  @media (max-width: 768px) {
+    html, body { overflow-x: hidden; }
+    body { background-attachment: scroll; }
+
+    /* Stack text + buttons ABOVE the ape image */
+    .overlay { position: static !important; padding: 16px !important; }
+    .overlay-row {
+      position: static !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      gap: 16px !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+    }
+
+    .text-block {
+      order: 1 !important;
+      width: 100% !important;
+      max-width: 92vw !important;
+      text-align: center !important;
+    }
+
+    .text-block h1 {
+      font-size: clamp(28px, 9vw, 44px) !important;
+      line-height: 1.05 !important;
+      margin: 0 0 8px 0 !important;
+      letter-spacing: 1px !important;
+      word-break: break-word !important;
+    }
+
+    .subline h2 {
+      font-size: clamp(16px, 5.5vw, 28px) !important;
+      margin: 6px 0 14px 0 !important;
+    }
+
+    .subline {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Make buttons stack and fit screen width */
+    .btn-opensea, .btn-x, .subline a {
+      display: block !important;
+      width: 100% !important;
+      max-width: 520px !important;
+      text-align: center !important;
+      margin: 6px auto !important;
+      box-sizing: border-box !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transform: none !important; /* prevent hover transform shifting layout on touch */
+    }
+
+    /* Ape image scales to viewport */
+    .ape {
+      order: 2 !important;
+      width: min(92vw, 560px) !important;
+      height: auto !important;
+      image-rendering: pixelated !important;
+    }
+
+    /* Ensure the row can't overflow horizontally */
+    .overlay-row * {
+      max-width: 100% !important;
+    }
+  }
+
+  
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+  /* === Move ON BASE under title on mobile === */
+  @media (max-width: 768px) {
+    .subline {
+      display: flex;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+    .subline h2 {
+      order: 1 !important;
+      margin-bottom: 10px !important;
+    }
+    .subline a {
+      order: 2 !important;
+    }
+  }
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+  /* === Refined: Only move ON BASE below title, buttons remain above ape === */
+  @media (max-width: 768px) {
+    .subline {
+      display: flex;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+    .subline h2 {
+      order: 2 !important; /* After title */
+      margin: 10px 0 !important;
+    }
+    .subline a {
+      order: 1 !important; /* Buttons stay on top */
+    }
+  }
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+  /* === Hide ON BASE text on mobile only === */
+  @media (max-width: 768px) {
+    .subline h2 {
+      display: none !important;
+    }
+  }
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+  /* === Hide ON BASE text and remove its spacing on mobile only === */
+  @media (max-width: 768px) {
+    .subline h2 {
+      display: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+  /* === Re-center buttons vertically on mobile after removing ON BASE === */
+  @media (max-width: 768px) {
+    .subline {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 12px !important;
+      margin: 12px 0 !important;
+    }
+    .subline a {
+      margin: 0 !important;
+    }
+  }
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<link href="style.css" rel="stylesheet"/>
+<!-- Favicon -->
+<link href="favicon.ico" rel="icon"/>
+<link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<style>
+/* Desktop layout fix: put Minigame on its own line and keep the hero aligned to top */
+@media (min-width: 1024px) {
+  .overlay .overlay-row { align-items: flex-start !important; }
+  .subline { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+  .subline .minigame-break { flex-basis: 100%; height: 0; }
+  .subline .btn-minigame { flex: 0 0 auto; width: max-content; margin-top: 6px; }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+/* Desktop layout: Grid buttons and equal widths; place Minigame under X; title strap ("ON BASE") directly under H1 */
+@media (min-width: 1024px) {
+  .overlay .overlay-row { align-items: center !important; flex-wrap: nowrap !important; }
+  .overlay .overlay-row .left { display: flex; flex-direction: column; justify-content: center; }
+
+  .subline {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* equal button columns */
+    column-gap: 16px;
+    row-gap: 12px;
+    align-items: start;
+  }
+  .subline h2 {
+    grid-column: 1 / -1; /* span both columns */
+    grid-row: 1;
+    margin: 0 0 4px 0;   /* tuck closer to the title */
+  }
+  .subline .btn-opensea { grid-column: 1; grid-row: 2; width: 100%; }
+  .subline .btn-x       { grid-column: 2; grid-row: 2; width: 100%; }
+  .subline .btn-minigame{ grid-column: 2; grid-row: 3; width: 100%; }
+}
+
+/* Center button text consistently */
+.btn, .btn-opensea, .btn-x, .btn-minigame {
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure Minigame's padding/size matches the others */
+.btn-minigame {
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  font-size: var(--btn-font);
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+@media (min-width: 1024px) {
+  .subline .btn-opensea,
+  .subline .btn-x,
+  .subline .btn-minigame,
+  .subline .btn-memecoin {
+    width: calc(100% - 24px);   /* shrink a bit to create visual gap */
+    justify-self: start;        /* keep aligned to left of each column */
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+@media (min-width: 1024px) {
+  .subline { column-gap: 8px !important; }
+  .subline .btn-opensea,
+  .subline .btn-x,
+  .subline .btn-minigame,
+  .subline .btn-memecoin {
+    width: 100% !important;
+    justify-self: stretch !important;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+@media (min-width: 1024px) {
+  .subline .btn-opensea,
+  .subline .btn-x,
+  .subline .btn-minigame,
+  .subline .btn-memecoin {
+    width: 88% !important;        /* reduce width uniformly */
+    justify-self: start !important;/* keep left-aligned in their grid columns */
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+@media (min-width: 1024px) {
+  .subline .btn-opensea,
+  .subline .btn-x,
+  .subline .btn-minigame,
+  .subline .btn-memecoin {
+    width: 80% !important;          /* further reduced width */
+    justify-self: start !important;  /* keep left aligned within columns */
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+/* Mobile-only: make Minigame match OpenSea button sizing */
+@media (max-width: 1023px) {
+  .subline .btn-minigame {
+    padding: var(--btn-padding-y) var(--btn-padding-x) !important;
+    font-size: var(--btn-font) !important;
+    border-width: 4px !important;
+    box-sizing: border-box;
+    display: inline-block;   /* same flow as other buttons */
+    width: 100%;             /* match OpenSea if it spans full width on mobile */
+    text-align: center;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+/* Mobile-only tweak: shrink Minigame button so it matches others */
+@media (max-width: 1023px) {
+  .subline .btn-minigame {
+    font-size: calc(var(--btn-font) - 2px) !important;
+    padding: calc(var(--btn-padding-y) - 4px) calc(var(--btn-padding-x) - 2px) !important;
+    line-height: 1 !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+/* Mobile-only: further shrink Minigame button */
+@media (max-width: 1023px) {
+  .subline .btn-minigame {
+    font-size: calc(var(--btn-font) - 4px) !important;
+    padding: calc(var(--btn-padding-y) - 8px) calc(var(--btn-padding-x) - 4px) !important;
+    line-height: 1 !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+/* Kill ONLY the space between .lore and .gallery on phones */
+@media (max-width: 768px){
+  /* create new BFCs so margins can't collapse */
+  .lore, .gallery { display: flow-root !important; }
+  /* zero out any margins that could add up between them */
+  .lore { margin-bottom: 0 !important; padding-bottom: 0 !important; border-bottom: 0.1px solid transparent !important; }
+  .lore > *:last-child { margin-bottom: 0 !important; }
+  .lore + .gallery { margin-top: 0 !important; }
+  /* ensure no pseudo-elements create spacing */
+  .lore::before, .lore::after, .lore-inner::before, .lore-inner::after { content: none !important; display: none !important; height: 0 !important; }
+  /* guard against any accidental min-heights */
+  .lore, .gallery, .lore-inner, .gallery-inner { min-height: 0 !important; }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+
+/* === Mobile CTA repositioning === */
+.cta-buttons-mobile { display: none; }
+@media (max-width: 768px) {
+  /* hide buttons inside the hero text block on mobile */
+  .text-block .btn-opensea,
+  .text-block .btn-x,
+  .text-block .btn-minigame { display: none !important; }
+  /* show the cloned buttons below the hero */
+  .cta-buttons-mobile {
+    display: flex !important;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 16px auto 0 auto;
+    width: 100%;
+    max-width: 640px;
+    padding: 0 16px;
+  }
+  .cta-buttons-mobile a {
+    text-align: center;
+  }
+}
+@media (min-width: 769px) {
+  .cta-buttons-mobile { display: none !important; }
+}
+
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+
+/* === Normalize mobile CTA buttons === */
+@media (max-width: 768px) {
+  .cta-buttons-mobile { padding: 0 16px; }
+  .cta-buttons-mobile a {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;   /* override any prior max-width calc */
+    margin: 0 0 12px 0 !important;
+    padding: 12px 16px !important; /* consistent padding for all */
+    text-align: center !important;
+  }
+  /* keep last button from having extra bottom gap */
+  .cta-buttons-mobile a:last-child { margin-bottom: 0 !important; }
+
+  /* ensure all three share the same base sizing */
+  .cta-buttons-mobile .btn-opensea,
+  .cta-buttons-mobile .btn-x,
+  .cta-buttons-mobile .btn-minigame,
+  .cta-buttons-mobile .btn-memecoin {
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+  }
+}
+
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+
+/* === Normalize and center mobile CTA buttons === */
+@media (max-width: 768px) {
+  .cta-buttons-mobile {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 16px auto 0 auto;
+    padding: 0 12px;
+  }
+  .cta-buttons-mobile a {
+    display: block !important;
+    width: 100%;
+    max-width: 320px !important;  /* consistent fixed width */
+    box-sizing: border-box !important;
+    padding: 12px 16px !important;
+    text-align: center !important;
+  }
+}
+
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+
+/* === Mobile CTA centering hard override === */
+@media (max-width: 768px) {
+  .cta-buttons-mobile {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    padding-inline: 16px !important;  /* symmetric side padding */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .cta-buttons-mobile a {
+    display: block !important;
+    max-width: 320px !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    left: 0 !important; right: 0 !important;  /* guard against any leftover positioning */
+    float: none !important;
+  }
+}
+
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+
+/* === Roadmap (vertical) === */
+.roadmap { 
+  width: 100%; 
+  max-width: 1200px; 
+  margin: 32px auto; 
+  padding: 0 clamp(12px, 4vw, 32px);
+  box-sizing: border-box;
+}
+.roadmap-title {
+  font-family: 'Press Start 2P', monospace !important;
+  text-align: center;
+  margin: 0 0 20px 0;
+  font-size: clamp(18px, 4vw, 28px);
+  letter-spacing: 1px;
+}
+.roadmap-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+.roadmap-item {
+  display: grid; grid-template-columns: 96px 1fr; align-items: center; gap: 16px;
+  padding: 12px 16px; border: 4px solid #3a2316; background: #f1e2c6;
+}
+.roadmap-item img {
+  width: 96px; height: auto; image-rendering: pixelated; image-rendering: crisp-edges; display: block;
+}
+.roadmap-text h3, .roadmap-text p { font-family: 'Press Start 2P', monospace !important; margin: 0 0 6px 0; line-height: 1.25; }
+.roadmap-text h3 { font-size: clamp(12px, 2.6vw, 16px); }
+.roadmap-text p  { font-size: clamp(10px, 2.2vw, 14px); opacity: 0.9; }
+@media (max-width: 768px) {
+  .roadmap-item { grid-template-columns: 72px 1fr; gap: 12px; padding: 10px 12px; }
+  .roadmap-item img { width: 72px; }
+}
+
+/* Fix: Remove brown background behind Roadmap on mobile only */
+@media (max-width: 768px) {
+  section.roadmap {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+  section.roadmap::before,
+  section.roadmap::after {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style>
+<style>
+/* === DESKTOP-ONLY fixes (>=1024px) === */
+@media (min-width: 1024px) {
+  /* 1) Hero must NOT be pinned to top (desktop) */
+  .overlay {
+    position: relative !important;
+    top: auto !important;
+    left: 50% !important;                /* center the overlay horizontally */
+    transform: translateX(-50%) !important;
+    margin: 0 auto !important;
+    max-width: 1400px !important;        /* safe max width for centering */
+    padding-top: clamp(84px, 9vw, 160px) !important; /* space for CTA row above hero */
+  }
+
+  /* 2) CTA buttons at top, single line, above hero text & image (desktop) */
+  .overlay .cta-buttons {
+    position: absolute !important;
+    top: clamp(8px, 2vw, 24px) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 1000 !important;
+
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  /* Ensure CTA items don't hard-cap width and don't wrap */
+  .overlay .cta-buttons a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    width: auto !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 3) X button must fully contain the text (desktop) */
+  .overlay .cta-buttons .btn-x {
+    white-space: nowrap !important;
+    width: auto !important;
+    min-width: max-content !important;
+    max-width: none !important;
+    overflow: visible !important;
+  }
+
+  /* 4) Centralise the whole hero content within the page (desktop) */
+  .overlay-row {
+    display: grid !important;
+    place-items: center !important; /* center both horizontally and vertically within overlay's flow */
+  }
+  .text-block {
+    text-align: center !important;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+/* Subline styling under the main title */
+.text-block .subline-text {
+  font-size: var(--onbase-size);
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+/* === Desktop: left-align hero title and subline === */
+@media (min-width: 1024px) {
+  .overlay .text-block {
+    text-align: left !important;
+  }
+  .overlay .text-block h1,
+  .overlay .text-block .subline-text {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+/* === Desktop: put hero text on the LEFT of the ape image === */
+@media (min-width: 1024px) {
+  .overlay-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    align-items: center !important;
+    gap: clamp(16px, 4vw, 48px) !important;
+  }
+  .overlay-row .text-block {
+    grid-column: 1 !important;
+    text-align: left !important;
+  }
+  .overlay-row img.ape {
+    grid-column: 2 !important;
+    justify-self: end !important;
+    height: auto !important;
+    max-width: 100% !important;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+/* === DESKTOP ONLY: Center everything and keep CTA row at the top === */
+@media (min-width: 1024px) {
+  /* Center the hero overlay container instead of pinning/offsetting it */
+  .overlay {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 0 auto !important;
+    max-width: 1400px !important;
+    width: 100% !important;
+    padding-top: clamp(84px, 9vw, 160px) !important; /* space for CTA row */
+    box-sizing: border-box !important;
+  }
+
+  /* CTA row: single line at the very top, centered */
+  .overlay .cta-buttons {
+    position: absolute !important;
+    top: clamp(8px, 2vw, 24px) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 1000 !important;
+
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .overlay .cta-buttons a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    width: auto !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+  }
+
+  /* X button must fully contain its text */
+  .overlay .cta-buttons .btn-x {
+    white-space: nowrap !important;
+    width: auto !important;
+    min-width: max-content !important;
+    max-width: none !important;
+    overflow: visible !important;
+  }
+
+  /* Keep hero text on the LEFT of the ape image */
+  .overlay-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    align-items: center !important;
+    gap: clamp(16px, 4vw, 48px) !important;
+  }
+  .overlay-row .text-block {
+    grid-column: 1 !important;
+    text-align: left !important;
+  }
+  .overlay-row img.ape {
+    grid-column: 2 !important;
+    justify-self: end !important;
+    height: auto !important;
+    max-width: 100% !important;
+  }
+
+  /* Normalize previously full-bleed sections to be centered containers on desktop */
+  .jc-carousel-top {
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+/* === Increase ONLY the hero ape image by 20% (both desktop & mobile) === */
+.overlay-row img.ape {
+  transform: scale(1.2) !important;          /* 20% larger */
+  transform-origin: center center !important; /* keep it centered while scaling */
+  image-rendering: auto !important;           /* ensure smooth scaling */
+  z-index: 1;                                 /* stay above backgrounds if needed */
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+/* === Decrease ONLY the hero ape image by 10% === */
+.overlay-row img.ape {
+  transform: scale(0.9) !important;          /* 10% smaller */
+  transform-origin: center center !important; /* keep centered while scaling */
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+/* === Increase ONLY the hero ape image by 15% === */
+.overlay-row img.ape {
+  transform: scale(1.15) !important;
+  transform-origin: center center !important;
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+/* === MOBILE ONLY: hide "ON BASE" subline under the hero title === */
+@media (max-width: 1023px) {
+  .overlay .text-block .subline-text {
+    display: none !important;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+/* === MOBILE ONLY: shift ONLY hero text + ape up by 10% === */
+@media (max-width: 1023px) {
+  .overlay .overlay-row {
+    position: relative !important;
+    transform: translateY(-10vh) !important; /* move up by 10% of screen height */
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+/* === MOBILE ONLY: move hero text + ape DOWN by 5% of viewport height === */
+@media (max-width: 1023px) {
+  .overlay .overlay-row {
+    transform: translateY(5vh) !important;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+/* === MOBILE ONLY: move hero text + ape UP by 7% of viewport height === */
+@media (max-width: 1023px) {
+  .overlay .overlay-row {
+    transform: translateY(-7vh) !important;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+/* === MOBILE ONLY: adjust hero text + ape DOWN by 2% from previous (-7vh → -5vh) === */
+@media (max-width: 1023px) {
+  .overlay .overlay-row {
+    transform: translateY(-5vh) !important;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+</style><style>
+/* === MOBILE ONLY: adjust hero text + ape DOWN by 0.5% from previous (-5vh → -4.5vh) === */
+@media (max-width: 1023px) {
+  .overlay .overlay-row {
+    transform: translateY(-4.5vh) !important;
+  }
+}
+
+    .btn-memecoin {
+      display: inline-block;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      background: #f1c40f; /* gold color for token */
+      color: #fff;
+      text-decoration: none;
+      font-size: var(--btn-font);
+      border: 4px solid #fff;
+      image-rendering: pixelated;
+      box-shadow: 6px 6px 0 #000;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn-memecoin:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+
+.btn, .btn-opensea, .btn-x, .btn-minigame, .btn-unknown, .btn-memecoin {
+  vertical-align: middle;
+}
+
+
+/* === Unify CTA height & alignment (desktop) === */
+.subline .btn-opensea,
+.subline .btn-x,
+.subline .btn-minigame,
+.subline .btn-memecoin {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  box-sizing: border-box !important;
+  height: calc(var(--btn-font) + (var(--btn-padding-y) * 2)) !important;
+}
+
+</style>
+<style>
+/* === Surgical CTA alignment cleanup (final overrides) === */
+@media (min-width: 1024px) {
+  /* Force consistent alignment & spacing for the CTA row */
+  .subline {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important; /* center, not baseline */
+    gap: 12px 16px !important;
+  }
+
+  /* Normalize all four CTA buttons on desktop */
+  .subline .btn-opensea,
+  .subline .btn-x,
+  .subline .btn-minigame,
+  .subline .btn-memecoin {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    box-sizing: border-box !important;
+    height: calc(var(--btn-font) + (var(--btn-padding-y) * 2)) !important;
+    width: auto !important;
+    margin-top: 0 !important; /* remove minigame-only vertical offset */
+  }
+}
+
+/* Ensure visual consistency regardless of earlier duplicates */
+.btn-opensea, .btn-x, .btn-minigame, .btn-memecoin {
+  border: 4px solid #fff !important;
+  box-shadow: 6px 6px 0 #000 !important;
+  image-rendering: pixelated !important;
+}
+
+/* Memecoin text color & border to match others */
+.btn-memecoin {
+  color: #fff !important;
+  border: 4px solid #fff !important;
+}
+</style>
+
+
+<style>
+/* === Pixel-perfect CTA height on desktop === */
+@media (min-width: 1024px) {
+  .subline .btn-opensea,
+  .subline .btn-x,
+  .subline .btn-minigame,
+  .subline .btn-memecoin {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 72px !important;         /* hard-pinned height for exact match */
+    padding-top: 0 !important;        /* normalize vertical padding */
+    padding-bottom: 0 !important;
+    line-height: 1 !important;        /* prevent line-height from shifting baseline */
+    box-sizing: border-box !important;
+  }
+}
+</style>
+
+<style>
+
+/* === Lore collapsible === */
+.lore-toggle {
+  display: block;
+  max-width: 900px;
+  margin: 0 auto;
+  border: none;
+  background: transparent;
+}
+.lore-toggle > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 16px 20px;
+  margin: 0 auto 10px auto;
+  width: max-content;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(16px, 4vw, 24px);
+  color: #3a2316;
+  border: 4px solid #fff;
+  box-shadow: 6px 6px 0 #000;
+  background: rgba(255,255,255,0.2);
+}
+.lore-toggle > summary::-webkit-details-marker { display: none; }
+.lore-toggle[open] > summary { background: rgba(255,255,255,0.35); }
+
+/* hide original lore content until open */
+.lore-toggle .lore-content { display: none; }
+.lore-toggle[open] .lore-content { display: block; }
+
+</style>
+<style>
+@media (min-width: 1024px) {
+  .lore-toggle > summary {
+    position: static;
+    margin-top: 22px;
+    margin-bottom: 10px;
+  }
+}
+</style>
+<style>
+@media (min-width: 1024px) {
+  section.lore, .lore-toggle {
+    margin-top: 22px !important;
+  }
+}
+</style>
+
+<style>
+/* === Lore section spacing & stacking (desktop) === */
+@media (min-width: 1024px) {
+  .lore-section { 
+    margin-top: 22px !important;
+  }
+  /* reset any previous summary offsets so spacing is from the section */
+  .lore-toggle > summary {
+    margin-top: 0 !important;
+  }
+}
+/* keep the clickable always above the ape image */
+.lore-toggle, .lore-toggle > summary {
+  position: relative;
+  z-index: 10;
+}
+</style>
+
+
+<style>
+@media (min-width: 1024px) {
+  .subline.cta-buttons {
+    row-gap: 35px !important; /* increase vertical gap between CTA buttons */
+  }
+}
+</style>
+
+
+<style>
+@media (min-width: 1024px) {
+  .subline.cta-buttons {
+    row-gap: 35px !important; 
+    column-gap: 35px !important; /* set horizontal gap */
+  }
+}
+</style>
+
+
+<style>
+@media (min-width: 1024px) {
+  .lore-section {
+    margin-top: 22px !important;
+  }
+}
+</style>
+
+
+<style>
+@media (min-width: 1024px) {
+  .lore-section, section.lore { margin-top: 22px !important; }
+}
+</style>
+
+
+<style>
+@media (min-width: 1024px) {
+  .overlay-spacer { height: 37px; }
+}
+</style>
+
+
+<style>
+/* === Clickable "pixel button" styling for lore summary === */
+.lore-toggle > summary {
+  position: relative;
+  border: 4px solid #fff;
+  box-shadow: 6px 6px 0 #000;
+  background: rgba(255,255,255,0.2);
+  image-rendering: pixelated;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+}
+
+/* Corner pixels: 8x8 white squares at each corner */
+.lore-toggle > summary::before,
+.lore-toggle > summary::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  image-rendering: pixelated;
+}
+
+/* Top-left & bottom-left via ::before */
+.lore-toggle > summary::before {
+  left: -4px; /* sit over the outer border corner */
+  top: -4px;
+  box-shadow:
+    0 calc(100% - 8px) 0 0 #fff;  /* bottom-left second square */
+}
+
+/* Top-right & bottom-right via ::after */
+.lore-toggle > summary::after {
+  right: -4px;
+  top: -4px;
+  box-shadow:
+    0 calc(100% - 8px) 0 0 #fff;  /* bottom-right second square */
+}
+
+/* Add a caret on the right to signal expandability */
+.lore-toggle > summary span.lore-caret {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  font-size: 18px;
+}
+
+.lore-toggle[open] > summary span.lore-caret {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* Hover/active affordance */
+.lore-toggle > summary:hover {
+  background: rgba(255,255,255,0.3);
+  box-shadow: 8px 8px 0 #000;
+  cursor: pointer;
+}
+</style>
+
+
+<style>
+/* Carets at bottom corners */
+.lore-toggle > summary 
+.lore-toggle > summary span.lore-caret-right {
+  position: absolute;
+  bottom: 6px;
+  font-size: 14px;
+}
+.lore-toggle > summary  {
+  left: 10px;
+}
+.lore-toggle > summary span.lore-caret-right {
+  right: 10px;
+}
+.lore-toggle[open] > summary 
+.lore-toggle[open] > summary span.lore-caret-right {
+  transform: rotate(90deg);
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+/* Ensure lore content is always visible now that the toggle is removed */
+.lore-content { display: block !important; }
+</style>
+
+<style>details summary{cursor:pointer}</style>
+
+<style>
+@media (max-width: 768px) {
+  section.gallery { margin-top: 10px !important; }
+}
+</style>
+
+
+<style>
+/* Mobile: ensure space between lore parchment and gallery */
+@media (max-width: 768px) {
+  .lore + .gallery { margin-top: 18px !important; }
+}
+</style>
+
+
+<style>
+
+}
+</style>
+
+
+
+
+
+<style>
+@media (max-width: 768px) {
+  /* Wider lore parchment on mobile (independent of CTA sizing) */
+  .lore-section { padding-left: 2px !important; padding-right: 2px !important; }
+  .lore-content, .lore-inner, .lore-card {
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  .lore-section { padding-left: 2px !important; padding-right: 2px !important; }
+  .lore-content, .lore-inner, .lore-card { width: 100% !important; max-width: none !important; box-sizing: border-box !important; }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  /* Bleed the lore parchment to near-full viewport width with 2px side gutters */
+  .lore-section {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+    margin-left: -14px !important;   /* 16px overlay pad - 2px target = -14px */
+    margin-right: -14px !important;
+    box-sizing: border-box !important;
+  }
+  .lore-content, .lore-inner, .lore-card {
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  /* Visually center the parchment on mobile, compensating for right-side shadow */
+  .lore-section {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+    margin-left: -14px !important;
+    margin-right: -8px !important; /* compensate for ~6px right drop shadow */
+    box-sizing: border-box !important;
+  }
+  .lore-content, .lore-inner, .lore-card {
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  /* Reset any previous offsets */
+  .lore-section {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  /* Viewport-centered, nearly full-bleed parchment with symmetric 2px gutters */
+  .lore-section {
+    position: relative !important;
+    width: calc(100vw - 4px) !important;  /* 2px gutters on both sides */
+    left: 50vw !important;
+    transform: translateX(-50vw) !important; /* center relative to viewport */
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+    box-sizing: border-box !important;
+  }
+  /* Ensure inner wrappers don't constrain width */
+  .lore-content, .lore-inner, .lore-card {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  /* Use the overlay's own left offset to bleed parchment to 2px gutters and keep it centered */
+  .lore-section {
+    position: relative !important;
+    width: calc(100vw - 4px) !important;                 /* full viewport minus 2px x 2 */
+    margin-left: calc(-1 * var(--overlay-left) + 2px) !important; /* cancel overlay-left then add 2px */
+    margin-right: 2px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+    left: auto !important;
+    transform: none !important;
+  }
+  .lore-content, .lore-inner, .lore-card {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  /* Neutralize all prior offsets so JS can align precisely */
+  .lore-section {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    width: auto !important;
+    box-sizing: border-box !important;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  /* Reduce Lore parchment font size on mobile */
+  .lore-section .lore-card,
+  .lore-section .lore-content {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+  }
+  .lore-section .lore-card p,
+  .lore-section .lore-content p {
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  /* Clamp parchment height on mobile; expand when open */
+  .lore-section .lore-content {
+    max-height: 240px;
+    overflow: hidden;
+    position: relative;
+  }
+  .lore-section .lore-content.is-open { max-height: none; }
+  /* Pixel-style read-more button */
+  .lore-section .lore-readmore {
+    display: block;
+    margin: 12px auto 0;
+    padding: 12px 16px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    border: 4px solid #fff;
+    box-shadow: 6px 6px 0 #000;
+    background: rgba(255,255,255,0.2);
+    image-rendering: pixelated;
+    cursor: pointer;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  .lore-section .lore-content {
+    max-height: 240px;
+    overflow: hidden;
+    position: relative;
+  }
+  .lore-section .lore-content.is-open { max-height: none; }
+  .lore-section .lore-readmore {
+    display: block;
+    margin: 12px auto 0;
+    padding: 12px 16px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    border: 4px solid #fff;
+    box-shadow: 6px 6px 0 #000;
+    background: rgba(255,255,255,0.2);
+    image-rendering: pixelated;
+    cursor: pointer;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  /* Ensure the Read more button is above any overlapping elements */
+  .lore-section .lore-readmore {
+    position: relative !important;
+    z-index: 999 !important;
+    pointer-events: auto !important;
+  }
+  /* Create a little breathing room beneath the parchment so the button isn't under it */
+  .lore-section .lore-content { 
+    padding-bottom: 12px !important; 
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  .lore-section { position: relative !important; }
+  .lore-section .lore-content { padding-bottom: 16px !important; }
+  .lore-section .lore-readmore {
+    position: relative !important;
+    z-index: 2147483647 !important; /* above anything */
+    pointer-events: auto !important;
+    display: block !important;
+    margin-top: 10px !important;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  /* Bottom fade on unexpanded parchment (mobile) */
+  .lore-section .lore-content {
+    position: relative !important;
+  }
+  .lore-section .lore-content.is-open::after {
+    display: none;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  /* Remove old bottom overlay to avoid color mismatch at corners */
+  /* Use masking to fade the bottom without changing colors */
+  .lore-section .lore-content.is-open {
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+
+  /* Remove any parchment shadows that get clipped and look like vertical gradients */
+  .lore-section .lore-card,
+  .lore-section .lore-content,
+  .lore-section .lore-card::before,
+  .lore-section .lore-card::after,
+  .lore-section .lore-content::before,
+  }
+</style>
+
+
+
+<style>
+/* Single border only on the parchment card; clear on inner wrappers to avoid double borders */
+.lore-card {
+  border: 6px solid #3a2316 !important;
+  box-sizing: border-box !important;
+}
+.lore-content {
+  border: none !important;
+}
+/* Keep the corner pixel above if it overlaps */
+.corner { position: relative; z-index: 2; }
+</style>
+
+
+<style>
+/* Force parchment border color */
+.lore-card { border-color: #3a2316 !important; }
+</style>
+
+
+<style>
+/* --- Remove 3D shadow/glow from Roadmap section --- */
+.roadmap-item,
+.roadmap-item::before,
+.roadmap-item::after {
+  box-shadow: none !important;
+  filter: none !important;
+  background-image: none !important;
+}
+.roadmap-item img {
+  box-shadow: none !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+/* Optional: keep flat parchment card look */
+.roadmap-item { background: #f1e2c6 !important; }
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  .lore-section .lore-readmore {
+    color: #3a2316 !important;
+  }
+  .lore-section .lore-readmore:focus,
+  .lore-section .lore-readmore:hover,
+  .lore-section .lore-readmore:active {
+    color: #3a2316 !important;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  .lore-section .lore-readmore {
+    border: 4px solid #3a2316 !important; /* override earlier white border */
+  }
+}
+</style>
+
+
+<style>
+/* Add pixel-style drop shadows to each roadmap stage parchment */
+.roadmap .roadmap-item {
+  box-shadow: 6px 6px 0 #000 !important; /* desktop/tablet */
+}
+@media (max-width: 768px) {
+  .roadmap .roadmap-item {
+    box-shadow: 4px 4px 0 #000 !important; /* slightly lighter on mobile */
+  }
+}
+</style>
+
+
+<style>
+/* Targeted FAQ override: remove full-viewport stretch only for FAQ */
+section.faq {
+  min-height: auto !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  padding-bottom: 0 !important;
+  gap: 0 !important;
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  /* Clamp text without fades */
+  .lore-section .lore-content,
+  .lore-section .lore-body {
+    max-height: 240px;
+    overflow: hidden;
+  }
+  .lore-section .lore-content.is-open,
+  .lore-section .lore-body.is-open {
+    max-height: none;
+  }
+
+  /* Button styling and colors */
+  .lore-section .lore-readmore {
+    display: block;
+    margin: 12px auto 0;
+    padding: 12px 16px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    border: 4px solid #3a2316;   /* requested border color */
+    color: #3a2316;              /* requested text color */
+    background: rgba(255,255,255,0.2);
+    box-shadow: 6px 6px 0 #000;
+    image-rendering: pixelated;
+    cursor: pointer;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  .lore-section .lore-content { max-height: none !important; overflow: visible !important; }
+  .lore-card .lore-body { max-height: 240px; overflow: hidden; }
+  .lore-card .lore-body.is-open { max-height: none; }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  /* Subtle bottom fade only when collapsed */
+  .lore-card .lore-body {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+    -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+  }
+  .lore-card .lore-body.is-open {
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+}
+</style>
+
+
+<style>
+/* MOBILE-ONLY: Force FAQ dropdowns to widen, without touching desktop */
+@media (max-width: 768px) {
+  /* Break FAQ section out of any padded container and span viewport (with safe side padding) */
+  section.faq {
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: clamp(10px, 4vw, 18px) !important;
+    padding-right: clamp(10px, 4vw, 18px) !important;
+    box-sizing: border-box !important;
+    overflow-x: clip !important; /* prevent accidental horizontal scroll from shadows/borders */
+  }
+
+  /* Ensure all inner FAQ blocks fully stretch */
+  section.faq .faq-inner,
+  section.faq .faq-list,
+  section.faq .faq-item,
+  section.faq .faq-item > summary,
+  section.faq .faq-answer {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  /* Neutralize generic summary rules that were constraining width/offsets */
+  section.faq summary {
+    position: relative !important;
+    left: 0 !important;
+  }
+}
+</style>
+
+
+<style>
+/* MOBILE: widen FAQ dropdowns even more (keep tiny safe gutters) */
+@media (max-width: 768px) {
+  /* Reduce outer gutters */
+  section.faq {
+    padding-left: clamp(2px, 1vw, 6px) !important;
+    padding-right: clamp(2px, 1vw, 6px) !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  /* Make each details block span the viewport minus tiny gutters */
+  section.faq details.faq-item {
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100vw - 8px) !important;
+    max-width: calc(100vw - 8px) !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+  /* Ensure summary and answer stretch fully within */
+  section.faq details.faq-item > summary,
+  section.faq details.faq-item .faq-answer {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  /* Narrow FAQ items by 4px total (2px each side) from current */
+  section.faq details.faq-item {
+    width: calc(100vw - 12px) !important;   /* was 100vw - 8px */
+    max-width: calc(100vw - 12px) !important;
+  }
+}
+</style>
+
+
+<style>
+@media (max-width: 768px) {
+  /* Reduce another 2px each side from the current width */
+  section.faq details.faq-item {
+    width: calc(100vw - 16px) !important;   /* previously 100vw - 12px */
+    max-width: calc(100vw - 16px) !important;
+  }
+}
+</style>
+
+</head>
+<body>
+<div class="overlay">
+<div class="overlay-row">
+<div class="text-block">
+<h1>THE<br/>$JUNGLE<br/>COUNCIL</h1><h2 class="subline-text">ON BASE</h2>
+<div class="subline cta-buttons">
+<a class="btn-opensea" href="https://opensea.io/collection/the-jungle-council" target="_blank">OpenSea</a>
+<a class="btn-x" href="https://x.com/tjcnft" target="_blank">Follow on X</a>
+<a class="btn-minigame" href="minigame/game.html">Minigame</a>
+  <a href="memecoin/index.html" class="btn-memecoin">$JUNGLE</a>
+</div>
+</div>
+<img alt="The Jungle Council Ape" class="ape" src="APE.png"/>
+</div>
+<!-- Mobile-only CTA buttons placed below the hero -->
+<div aria-label="Key Links" class="cta-buttons-mobile">
+<a class="btn-opensea" href="https://opensea.io/collection/the-jungle-council" target="_blank">OpenSea</a>
+<a class="btn-x" href="https://x.com/tjcnft" target="_blank">Follow on X</a>
+<a class="btn-minigame" href="minigame/game.html">Minigame</a>
+  <a href="memecoin/index.html" class="btn-memecoin">$JUNGLE</a>
+</div>
+<div class="overlay-spacer"></div>
+<section class="lore-section lore" aria-label="The Council's Lore">
+<div class="lore-content">
+
+<div class="lore-inner">
+
+<div class="lore-card">
+<div class="lore-body">
+<p>The Jungle Council is a limited collection of apes brought to life through pixel artistry and cultural storytelling. Rooted in scarcity and crafted with intention, it embodies both mystery and myth, blending community, lore, and art into a singular vision. Each piece is more than an image—it is a fragment of a larger narrative waiting to unfold.</p>
+</div>
+<button class="lore-readmore" aria-expanded="false">Read more...</button>
+</div>
+
+  </div>
+
+
+</div>
+
+</section>
+<section aria-label="Gallery" class="gallery">
+<div class="gallery-inner">
+<div class="gallery-grid">
+<img alt="Gallery placeholder 1" loading="lazy" src="images/gallery1.png"/>
+<img alt="Gallery placeholder 2" loading="lazy" src="images/gallery2.png"/>
+<img alt="Gallery placeholder 3" loading="lazy" src="images/gallery3.png"/>
+<img alt="Gallery placeholder 4" loading="lazy" src="images/gallery4.png"/>
+<img alt="Gallery placeholder 5" loading="lazy" src="images/gallery5.png"/>
+<img alt="Gallery placeholder 6" loading="lazy" src="images/gallery6.png"/>
+<img alt="Gallery placeholder 7" loading="lazy" src="images/gallery7.png"/>
+<img alt="Gallery placeholder 8" loading="lazy" src="images/gallery8.png"/>
+</section>
+<!-- FAQ Section -->
+<section aria-label="Project Roadmap" class="roadmap">
+<div class="roadmap-inner">
+<h2 class="roadmap-title">ROADMAP</h2>
+<ol class="roadmap-list">
+<li class="roadmap-item">
+<img alt="Jungle Gates Open" src="images/roadmap/jungle-gates.png"/>
+<div class="roadmap-text">
+<h3>Stage 1: Jungle Gates Open</h3>
+<p>Welcome to the Jungle.</p>
+</li>
+<li class="roadmap-item">
+<img alt="Community Build" src="images/roadmap/community-build.png"/>
+<div class="roadmap-text">
+<h3>Stage 2: Community Build</h3>
+<p>Building bonds, one ape at a time.</p>
+</li>
+<li class="roadmap-item">
+<img alt="Website Launch" src="images/roadmap/website-launch.png"/>
+<div class="roadmap-text">
+<h3>Stage 3: Website Launch</h3>
+<p>The council unveils its digital domain.</p>
+</li>
+<li class="roadmap-item">
+<img alt="Telegram Gates Open" src="images/roadmap/wooden-gates.png"/>
+<div class="roadmap-text">
+<h3>Stage 4: Telegram Gates Open</h3>
+<p>The campfire chat begins.</p>
+</li>
+<li class="roadmap-item">
+<img alt="Minigame Release" src="images/roadmap/minigame.png"/>
+<div class="roadmap-text">
+<h3>Stage 5: Minigame Release</h3>
+<p>Press Start: the first jungle trials begin.</p>
+</li>
+<li class="roadmap-item">
+<img alt="$JUNGLE Launch" src="images/roadmap/memecoin lauch.png"/>
+<div class="roadmap-text">
+<h3>Stage 6: $JUNGLE Launch Announced</h3>
+<p>Banana money, ape power</p>
+</li>
+<li class="roadmap-item">
+<img alt="Locked" src="images/roadmap/locked.png"/>
+<div class="roadmap-text">
+<h3>Stage 7: ???</h3>
+<p>???</p>
+</li>
+<li class="roadmap-item">
+<img alt="Locked" src="images/roadmap/locked.png"/>
+<div class="roadmap-text">
+<h3>Stage 8: ???</h3>
+<p>???</p>
+</li>
+<li class="roadmap-item">
+<img alt="Locked" src="images/roadmap/locked.png"/>
+<div class="roadmap-text">
+<h3>Stage 9: ???</h3>
+<p>???</p>
+</li>
+</ol>
+</section>
+<section aria-label="Frequently asked questions" class="faq"><div class="faq-inner">
+<h2 class="faq-title">FAQ</h2>
+<details class="faq-item">
+<summary>When is mint?</summary>
+<div class="faq-answer">
+<p>To be announced. X/Telegram gets alpha first.</p></details>
+<details class="faq-item">
+<summary>How many shiny JPEGs ape get?</summary>
+<div class="faq-answer">
+<p>Total Supply is 3333. No more, no less. When jungle full, it's game over</p></details>
+<details class="faq-item">
+<summary>How is rarity determined?</summary>
+<div class="faq-answer">
+<p>Curated, not RNG soup. This ensures quality over sheer quantity.</p></details>
+<details class="faq-item">
+<summary>Do holders get commercial rights?</summary>
+<div class="faq-answer">
+<p>Yes — full rights to your ape. Print merch, launch a brand, open a ramen shop...</p></details>
+<details class="faq-item">
+<summary>Why should I even hold one of these JPEGs?</summary>
+<div class="faq-answer">
+<p> • Exclusive access to holders-alpha chat in our TG<br/>
+    • Future token airdrops (the more apes you hold, the more bananas you stack).<br/>
+    • Collabs &amp; WL spots with other projects.<br/>
+    • Full IP rights – do whatever you want with your ape (merch, memes, your OnlyFans mascot if you’re wild).</p>
+</details>
+</section>
+
+
+
+
+
+<script>
+(function(){
+  function isMobile(){ return window.matchMedia('(max-width: 768px)').matches; }
+  function init(){
+    var root = document.querySelector('.lore-section');
+    if(!root) return;
+    var content = root.querySelector('.lore-body') || root.querySelector('.lore-content');
+    var btn = root.querySelector('.lore-readmore');
+    if(!content || !btn) return;
+    function update(){
+      if(isMobile()){
+        btn.style.display = 'block';
+        if(!content.classList.contains('is-open')){
+          btn.textContent = 'Read more...';
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      } else {
+        btn.style.display = 'none';
+        content.classList.remove('is-open');
+        btn.textContent = 'Read more...';
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }
+    btn.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      var opened = content.classList.toggle('is-open');
+      btn.textContent = opened ? 'Read less...' : 'Read more...';
+      btn.setAttribute('aria-expanded', opened ? 'true' : 'false');
+    });
+    window.addEventListener('resize', update);
+    update();
+  }
+  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', init); }
+  else { init(); }
+})();
+</script>
+
+</body>
+</html>

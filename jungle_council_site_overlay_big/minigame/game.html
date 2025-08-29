@@ -1,0 +1,1113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Banana Catcher</title>
+
+  <style>
+
+    @font-face {
+      font-family: 'Press Start 2P';
+      src: url('assets/PressStart2P.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    #font-preload { font-family: 'Press Start 2P'; position: absolute; left: -9999px; visibility: hidden; }
+    html, body { margin: 0; height: 100%; background: #222; }
+    body { display: flex; justify-content: center; align-items: center; font-family: 'Press Start 2P', monospace; }
+    canvas { background: transparent; border: 4px solid #333; image-rendering: pixelated; touch-action: none; display: block; }
+  </style>
+
+<style id="lb-styles">
+/* Leaderboard styles (pixel font) */
+#leaderboard {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 260px;
+  max-width: 38vw;
+  background: rgba(0,0,0,0.55);
+  border: 2px solid #333;
+  border-radius: 6px;
+  padding: 8px;
+  color: #fff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  line-height: 1.6;
+  z-index: 30;
+  pointer-events: none; /* don't block clicks */
+}
+#leaderboard .lb-title { text-align:center; margin-bottom: 6px; font-size: 11px; letter-spacing: 1px; }
+#leaderboard .lb-row { display:flex; justify-content:space-between; gap:6px; padding: 2px 0; border-top: 1px solid rgba(255,255,255,0.08); }
+#leaderboard .lb-row:first-of-type { border-top: none; }
+#leaderboard .rank { width: 20px; opacity: 0.9; }
+#leaderboard .user { flex: 1; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; max-width: 160px;}
+#leaderboard .score { width: 64px; text-align:right; }
+#leaderboard .lb-empty { text-align:center; opacity:0.8; padding:6px 0; }
+@media (max-width: 799px) {
+  #leaderboard { font-size: 8px; width: 200px; }
+  #leaderboard .lb-title { font-size: 9px; }
+}
+</style>
+
+<style id="lb-visibility">
+  #leaderboard.lb-hidden { display: none !important; }
+</style>
+
+<style id="mobile-no-zoom-inputs">
+@media (pointer: coarse), (max-width: 768px) {
+  #xHandle, #baseAddr { font-size: 16px !important; line-height: 1.2; }
+}
+</style>
+
+<style id="preplay-center-fix">
+  /* Center the X handle & Base address fields inside the gate modal only */
+  #gate input[type="text"]{
+    display: block !important;
+    width: 100% !important;
+    max-width: 360px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  #gate label{
+    display: block !important;
+    max-width: 360px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: left !important;
+  }
+
+@media (max-width: 768px){
+  #gate input[type="text"]{
+    display: block !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  #gate label{
+    display: block !important;
+    max-width: 320px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: left !important;
+  }
+}
+</style>
+<style id="preplay-brown-card">
+  /* Pre-play fill-up form card: darker brown padded background with 24px rounded corners */
+  #gate > div{
+    background: #3b2516 !important;  /* darker brown */
+    border-radius: 24px !important;
+    padding: 20px 22px 24px !important;
+  }
+  #gate input[type="text"]{
+    border-radius: 24px !important;
+    padding: 10px 14px !important;
+  }
+  /* Buttons inside and outside the form share same jungle theme with glowing gradient */
+  button, .btn-minigame, .btn-x{
+    border-radius: 24px !important;
+    background: linear-gradient(180deg, #6b4227, #5b3a23) !important;
+    color: #ffe8b6 !important;
+    border: none !important;
+    padding: 10px 18px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    box-shadow:
+      0 4px 10px rgba(0,0,0,0.35),
+      0 0 6px rgba(255, 215, 128, 0.25) !important;
+    transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease !important;
+  }
+  button:hover, .btn-minigame:hover, .btn-x:hover{
+    background: linear-gradient(180deg, #815134, #6b4227) !important;
+    box-shadow:
+      0 6px 14px rgba(0,0,0,0.4),
+      0 0 8px rgba(255, 215, 128, 0.4) !important;
+  }
+  button:active, .btn-minigame:active, .btn-x:active{
+    transform: translateY(2px) !important;
+    box-shadow:
+      0 3px 6px rgba(0,0,0,0.3),
+      0 0 4px rgba(255, 215, 128, 0.2) !important;
+  }
+</style>
+<style id="start-btn-neon">
+  /* Softer green Start button with subtle glow */
+  #gateBtn{
+    border-radius: 24px !important;
+    background: linear-gradient(180deg, #2fb34d, #1f7a38) !important; /* softer green */
+    color: #f0fff0 !important;
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.3),
+      0 0 6px rgba(47, 179, 77, 0.35) !important; /* subtle glow */
+    transition: background .2s ease, transform .1s ease, box-shadow .2s ease !important;
+  }
+  #gateBtn:hover{
+    background: linear-gradient(180deg, #38c85a, #2a8a44) !important;
+    box-shadow:
+      0 6px 12px rgba(0,0,0,0.35),
+      0 0 8px rgba(47, 179, 77, 0.5) !important;
+  }
+  #gateBtn:active{
+    transform: translateY(2px) !important;
+    box-shadow:
+      0 3px 6px rgba(0,0,0,0.25),
+      0 0 6px rgba(47, 179, 77, 0.3) !important;
+  }
+</style>
+<style id="restart-btn-fixes">
+  /* Safer restart button tweaks: do not alter positioning model */
+  .restart, #restartBtn, .btn-restart {
+    will-change: transform;
+    touch-action: manipulation;              /* reduce tap delay / double-tap zoom */
+    -webkit-tap-highlight-color: transparent;
+  }
+  .restart:active, #restartBtn:active, .btn-restart:active {
+    transform: translateY(1px) !important;   /* subtle press */
+    box-shadow:
+      0 3px 6px rgba(0,0,0,0.25),
+      0 0 6px rgba(47, 179, 77, 0.3) !important;
+  }
+</style>
+<style id="restart-btn-hardfix">
+  /* Restart button: lock position and prevent any press offset */
+  #restartBtn, .btn-restart, .restart, [data-restart] {
+    position: inherit;                 /* do not force a new positioning context */
+    transform: none !important;
+    top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
+    pointer-events: auto !important;
+    z-index: 99999 !important;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  #restartBtn:hover, .btn-restart:hover, .restart:hover, [data-restart]:hover {
+    transform: none !important;
+  }
+  #restartBtn:active, .btn-restart:active, .restart:active, [data-restart]:active {
+    transform: none !important;        /* absolutely no vertical jump on press */
+    box-shadow: inherit !important;    /* keep existing shadow without adding press-depth */
+  }
+</style>
+</head>
+<body>
+
+<div id="leaderboard">
+  <div class="lb-title">Top 5</div>
+  <div class="lb-list"><div class="lb-empty">Loading…</div></div>
+</div>
+
+  <div id="gate" style="position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.75); z-index:10;">
+    <div style="background:#1e1e1e; border:4px solid #333; padding:16px 18px; max-width:520px; width:90%; color:#fff; font-family:'Press Start 2P', monospace; text-align:left;">
+      <div style="font-size:16px; margin-bottom:14px; text-align:center;">Banana Catcher by TJC<br><small class="preplay-sub" style="font-size:12px;opacity:.85">Follow us on X @tjcnft !</small></div>
+      <label style="display:block; font-size:12px; margin-bottom:6px;">Your X handle</label>
+      <input id="xHandle" type="text" placeholder="@thejungleape" style="width:100%; font-family:'Press Start 2P', monospace; font-size:12px; padding:8px; background:#111; color:#fff; border:3px solid #444; outline:none; margin-bottom:12px;" />
+      <label style="display:block; font-size:12px; margin-bottom:6px;">Your Base address</label>
+      <input id="baseAddr" type="text" placeholder="0x..." style="width:100%; font-family:'Press Start 2P', monospace; font-size:12px; padding:8px; background:#111; color:#fff; border:3px solid #444; outline:none;" / pattern="^0x[a-fA-F0-9]{40}$">
+      <div id="gateError" style="color:#ff7070; font-size:10px; margin-top:8px; min-height:14px;"></div>
+      <button id="gateBtn" style="margin-top:12px; font-family:'Press Start 2P', monospace; font-size:12px; padding:10px 14px; background:#2b2; color:#000; border:3px solid #171; cursor:pointer; display:block; width:100%;">Start</button>
+    </div>
+  </div>
+
+  <div id="font-preload">.</div>
+  <canvas id="gameCanvas" width="500" height="600"></canvas>
+
+  <script>
+    (function() {
+
+      const API_BASE = ''; // empty = fallback to local-only
+      let globalScores = null;
+
+      async function fetchGlobalScores() {
+        if (!API_BASE) return null;
+        try {
+          const r = await fetch(API_BASE + '/scores', { method: 'GET' });
+          if (!r.ok) throw new Error('fetch failed');
+          const data = await r.json();
+          if (Array.isArray(data)) return data;
+          return data && Array.isArray(data.scores) ? data.scores : null;
+        } catch (e) { return null; }
+      }
+
+      async function postGlobalScore(entry) {
+        if (!API_BASE) return false;
+        try {
+          const r = await fetch(API_BASE + '/scores', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(entry)
+          });
+          return r.ok;
+        } catch (e) { return false; }
+      }
+
+      let gateComplete = false;
+      let player = { handle: '', base: '' };
+      const SCORE_KEY = 'banana_catcher_scores_v1';
+      const PLAYER_KEY = 'banana_catcher_player_v1';
+
+      function loadScores() {
+        try { return JSON.parse(localStorage.getItem(SCORE_KEY) || '[]'); } catch(e) { return []; }
+      }
+      function saveScores(arr) {
+        try { localStorage.setItem(SCORE_KEY, JSON.stringify(arr)); } catch(e) {}
+      }
+      function loadPlayer() {
+        try { const p = JSON.parse(localStorage.getItem(PLAYER_KEY) || 'null'); if (p && p.handle) player = p; } catch(e) {}
+      }
+      function savePlayer() {
+        try { localStorage.setItem(PLAYER_KEY, JSON.stringify(player)); } catch(e) {}
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+
+      fetchGlobalScores().then(arr => { if (arr) globalScores = arr; });
+
+        loadPlayer();
+        const h = document.getElementById('xHandle');
+        const b = document.getElementById('baseAddr');
+        if (h && player.handle) h.value = player.handle;
+        if (b && player.base) b.value = player.base;
+      });
+
+      function tryCompleteGate() {
+        const h = document.getElementById('xHandle');
+        const b = document.getElementById('baseAddr');
+        const err = document.getElementById('gateError');
+        const valH = (h?.value || '').trim();
+        const valB = (b?.value || '').trim();
+
+        if (!valH || !valB) { if (err) err.textContent = 'Please fill both fields to continue.'; return false; }
+
+        const baseOk = /^0x[a-fA-F0-9]{40}$/.test(valB);
+        if (!baseOk) { if (err) err.textContent = 'Base address must be 0x followed by 40 hex chars.'; return false; }
+
+        player.handle = valH;
+        player.base = valB;
+        savePlayer();
+        gateComplete = true;
+        const gate = document.getElementById('gate');
+        if (gate) gate.style.display = 'none';
+        return true;
+      }
+
+      document.addEventListener('click', (e) => {
+        if (e.target && e.target.id === 'gateBtn') {
+          tryCompleteGate();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if ((e.key === 'Enter' || e.keyCode === 13) && !gateComplete) {
+          const target = document.activeElement;
+          if (target && (target.id === 'xHandle' || target.id === 'baseAddr')) {
+            tryCompleteGate();
+          }
+        }
+      });
+
+      const canvas = document.getElementById('gameCanvas');
+      const ctx = canvas.getContext('2d');
+
+// --- Impact & Popup FX state ---
+let impactTimer = 0;             // seconds
+const particles = [];            // {x,y,dx,dy,life,max}
+const popups = [];               // {x,y,text,life,max}
+
+const restartBtn = document.createElement('button'); restartBtn.id = 'restartBtn';
+restartBtn.id = 'restartBtn';
+restartBtn.textContent = 'Restart';
+Object.assign(restartBtn.style, {
+  position: 'fixed',
+  left: '50%',
+  top: '60%',
+  transform: 'translate(-50%, -50%)',
+  padding: '1.2vw 2vw',
+  border: '0.3vw solid #222',
+  borderRadius: '1vw',
+  background: 'linear-gradient(to bottom, #3eb489, #2a7f62)',
+  color: '#fff',
+  fontFamily: `'Press Start 2P', monospace`,
+  fontSize: '2vw',
+  textTransform: 'uppercase',
+  letterSpacing: '0.2vw',
+  cursor: 'pointer',
+  display: 'none',
+  zIndex: 20,
+  boxShadow: '0 0.5vw 0 #145c42, 0 0 1vw rgba(0,0,0,0.4)',
+  transition: 'all 0.15s ease'
+});
+
+// Add responsive desktop override
+const styleSheet = document.createElement("style");
+styleSheet.innerHTML = `
+  @media (min-width: 800px) {
+    #restartBtn {
+      font-size: 16px !important;
+      padding: 8px 14px !important;
+      border: 2px solid #222 !important;
+      border-radius: 6px !important;
+    }
+  }
+`;
+document.head.appendChild(styleSheet);
+
+// Mobile-specific override: shift restart button 5px down
+const styleSheetMobile = document.createElement("style");
+styleSheetMobile.innerHTML = `
+  @media (max-width: 799px) {
+    #restartBtn {
+      top: calc(60% + 5px) !important;
+    }
+  }
+`;
+document.head.appendChild(styleSheetMobile);
+
+restartBtn.addEventListener('click', () => { restartBtn.style.display = 'none'; restartGame(); });
+
+restartBtn.addEventListener('mouseenter', () => {
+  restartBtn.style.background = 'linear-gradient(to bottom, #48cfa1, #3eb489)';
+  restartBtn.style.boxShadow = '0 6px 0 #145c42, 0 0 14px rgba(0,255,200,0.5)';
+});
+restartBtn.addEventListener('mouseleave', () => {
+  restartBtn.style.background = 'linear-gradient(to bottom, #3eb489, #2a7f62)';
+  restartBtn.style.boxShadow = '0 6px 0 #145c42, 0 0 10px rgba(0,0,0,0.4)';
+});
+
+restartBtn.addEventListener('mousedown', () => {
+  restartBtn.style.transform = 'translate(-50%, -46%)';
+});
+restartBtn.addEventListener('mouseup', () => {
+  restartBtn.style.transform = 'translate(-50%, -50%)';
+});
+document.body.appendChild(restartBtn);
+
+function positionRestartButton() {
+  const rect = canvas.getBoundingClientRect();
+  const titleSize = 24, infoSize = 14, lineGap = 18;
+  const blockHeight = titleSize + lineGap + infoSize + lineGap + infoSize;
+  const topY = Math.round((BASE_H - blockHeight) / 2);
+  const textY = topY + titleSize + lineGap + infoSize;
+
+  const scaleX = rect.width / BASE_W;
+  const scaleY = rect.height / BASE_H;
+
+  const cx = rect.left + (BASE_W / 2) * scaleX;
+  const cy = rect.top + textY * scaleY - 15; // net shift upwards 15px instead of 20px
+
+  restartBtn.style.left = cx + 'px';
+  restartBtn.style.top  = cy + 'px';
+}
+window.addEventListener('resize', positionRestartButton);
+
+      ctx.imageSmoothingEnabled = false;
+
+      window.onerror = function(msg, src, line, col) {
+        ctx.save(); ctx.setTransform(1,0,0,1,0,0);
+        ctx.fillStyle = 'rgba(0,0,0,0.7)'; ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = 'white'; ctx.font = '14px monospace';
+        ctx.fillText('JS Error: ' + msg, 10, 26);
+        if (line) ctx.fillText('at ' + (src||'') + ':' + line + ':' + (col||0), 10, 46);
+        ctx.restore();
+      };
+
+      const BASE_W = 500, BASE_H = 600;
+                  // === Pointer controls (mouse & touch/drag) ===
+      let dragging = false;
+      function setBasketToClientX(clientX) { if (!started || gameOver) return;
+        const rect = canvas.getBoundingClientRect();
+        const x = (clientX - rect.left) * (BASE_W / rect.width);
+        basket.x = Math.max(0, Math.min(BASE_W - basket.width, x - basket.width/2));
+      }
+      canvas.addEventListener('pointerdown', (e) => {
+        if (!started || gameOver) return;
+        if (e.pointerType !== 'mouse') {
+          dragging = true;
+          try { canvas.setPointerCapture && canvas.setPointerCapture(e.pointerId); } catch(_) {}
+        }
+        setBasketToClientX(e.clientX);
+      }, { passive: true });
+      window.addEventListener('pointerup', (e) => {
+        dragging = false;
+        try { canvas.releasePointerCapture && canvas.releasePointerCapture(e.pointerId); } catch(_) {}
+      }, { passive: true });
+      window.addEventListener('pointercancel', (e) => { dragging = false; }, { passive: true });
+      canvas.addEventListener('pointermove', (e) => {
+        if (!started || gameOver) return;
+        if (e.pointerType === 'mouse' || dragging) setBasketToClientX(e.clientX);
+      }, { passive: true });
+      // ===============================================
+    
+    
+    
+
+
+      let fontReady = false;
+      if (document.fonts && document.fonts.load) {
+        Promise.all([ document.fonts.load("10px 'Press Start 2P'"), document.fonts.ready ]).then(() => { fontReady = true; });
+      } else { fontReady = true; }
+
+      function blinkVisible() { return Math.floor(performance.now() * 0.002) % 2 === 0; }
+
+      function fitToScreen() {
+        const maxW = Math.max(200, window.innerWidth - 8);
+        const maxH = Math.max(200, window.innerHeight - 8);
+        const scale = Math.min(maxW / BASE_W, maxH / BASE_H);
+        const dpr = window.devicePixelRatio || 1;
+        canvas.style.width = (BASE_W * scale) + 'px';
+        canvas.style.height = (BASE_H * scale) + 'px';
+        canvas.width  = Math.round(BASE_W * scale * dpr);
+        canvas.height = Math.round(BASE_H * scale * dpr);
+        ctx.setTransform(scale * dpr, 0, 0, scale * dpr, 0, 0);
+      }
+      window.addEventListener('resize', fitToScreen);
+      fitToScreen();
+
+      function setPixelFont(px) { ctx.font = px + "px 'Press Start 2P'"; }
+      function drawPixelText(text, x, y, px, align='left') { setPixelFont(px); ctx.textAlign = align; ctx.fillText(text, Math.round(x), Math.round(y)); ctx.textAlign = 'left'; }
+      
+
+        // Pixel-art ring helper
+        function drawPixelRing(cx, cy, r, color) {
+          const s = 2; // pixel block size
+          const steps = 64; // number of samples around the circle
+          const twoPi = Math.PI * 2;
+          const prevFill = ctx.fillStyle;
+          ctx.fillStyle = color || 'white';
+          for (let i = 0; i < steps; i++) {
+            const a = i * (twoPi / steps);
+            const x = Math.round(cx + r * Math.cos(a));
+            const y = Math.round(cy + r * Math.sin(a));
+            ctx.fillRect(x - (s>>1), y - (s>>1), s, s);
+          }
+          // Optional thickness: a second inner ring for a chunkier look
+          const r2 = Math.max(2, r - 2);
+          for (let i = 0; i < steps; i++) {
+            const a = i * (twoPi / steps);
+            const x = Math.round(cx + r2 * Math.cos(a));
+            const y = Math.round(cy + r2 * Math.sin(a));
+            ctx.fillRect(x - (s>>1), y - (s>>1), s, s);
+          }
+          ctx.fillStyle = prevFill;
+        }
+        function drawPixelTextCentered(text, y, px) { drawPixelText(text, BASE_W/2, y, px, 'center'); }
+
+      const monkeyImg = new Image(), bananaImg = new Image(), bombImg = new Image(), magnetImg = new Image(); const shieldImg = new Image();
+      const bgImg = new Image(); let bgReady = false;
+      bgImg.onload = () => { bgReady = true; };
+      bgImg.src = 'assets/background.png';
+      const bgm = new Audio('assets/bgm.mp3'); bgm.loop = true; bgm.volume = 0.6;
+      const sndBomb = new Audio('assets/bomb.mp3');
+      monkeyImg.src = 'assets/monkey.png'; bananaImg.src = 'assets/banana.png';
+      magnetImg.src = 'assets/magnet.png'; bombImg.src = 'assets/bomb.png';
+      let timeSinceShieldPU = 0;
+      shieldImg.src = 'assets/shield.png';
+      let powerupTimer = 0;
+      let magnetActive = false, magnetTimer = 0; let shieldCount = 0;
+
+      const basketDefaultWidth = 60;
+      const basket = { x: 220, y: 500, width: basketDefaultWidth, height: 80, speed: 7 };
+      let objects = [], score = 0, started = false, gameOver = false, lastTime = performance.now(), timeSinceStart = 0; let fpsEstimate = 60, fpsAlpha = 0.1;
+
+      function currentDifficulty() { return Math.min(4, 1 + timeSinceStart / 20); }
+      function currentMultiplier() { return Math.min(5, 1 + 0.5 * Math.floor(timeSinceStart / 8)); }
+
+      const keys = {};
+      document.addEventListener('keydown', e => keys[e.key] = true);
+      document.addEventListener('keyup', e => keys[e.key] = false);
+
+      function clientXToCanvasX(clientX) { const rect = canvas.getBoundingClientRect(); const scaleX = BASE_W / rect.width; return (clientX - rect.left) * scaleX; }
+      function setBasketToClientX(clientX) { const targetX = clientXToCanvasX(clientX) - basket.width / 2; basket.x = Math.max(0, Math.min(BASE_W - basket.width, targetX)); }
+
+      
+      canvas.addEventListener('touchstart', e => { if (e.touches && e.touches.length > 0) { if (!gateComplete) { e.preventDefault(); return; } if (!started) startGame(); setBasketToClientX(e.touches[0].clientX); } e.preventDefault(); }, { passive: false });
+      canvas.addEventListener('touchmove', e => { if (e.touches && e.touches.length > 0) setBasketToClientX(e.touches[0].clientX); e.preventDefault(); }, { passive: false });
+
+      canvas.addEventListener('click', () => { if (!gateComplete) return; if (!started) startGame(); });
+
+      function startGame() {
+  try { setLeaderboardVisible(false); } catch(_) {}
+
+  scoreSubmitted = false; prevGameOver = false;
+
+  // Reset FX
+  if (typeof impactTimer !== 'undefined') impactTimer = 0;
+  if (Array.isArray(particles)) particles.length = 0;
+  if (Array.isArray(popups)) popups.length = 0;
+ started = true; gameOver = false; score = 0; objects = [];   timeSinceShieldPU = 0;resetPowerupTimer();magnetActive = false; magnetTimer = 0; shieldCount = 0; timeSinceStart = 0; magnetActive = false; magnetTimer = 0; lastTime = performance.now(); basket.width = basketDefaultWidth;
+        try { bgm.currentTime = 0; bgm.play(); } catch(e) { console.log('bgm play blocked'); }
+      }
+      function restartGame() {
+  try { setLeaderboardVisible(false); } catch(_) {}
+
+  scoreSubmitted = false; prevGameOver = false;
+ try { bgm.currentTime = 0; bgm.play(); } catch(e) {} startGame(); }
+
+      const SPAWN_BASE = 0.02;
+      function spawnObject() {
+        const d = currentDifficulty();
+        const bombProb = Math.min(0.50, 0.20 + 0.30 * Math.min(1, timeSinceStart / 120));
+        const type = Math.random() < bombProb ? 'bomb' : 'banana';
+        let speed = (1.0 + Math.random() * 1.0) + 0.5 * (d - 1);
+        if (type === 'bomb') speed += 0.5 * (d - 1);
+        objects.push({ x: Math.random() * (BASE_W - 32), y: -32, size: 32, type, speed });
+      }
+      
+      function resetPowerupTimer() { powerupTimer = 4 + Math.random() * 2; }
+      function spawnPowerup() {
+  // Force a shield if none spawned for a while (pity timer)
+  let forceShield = timeSinceShieldPU > 20;
+  // Allow at most one powerup on screen
+  let puCount = 0;
+  for (const o of objects) if (o.type === 'magnetPU' || o.type === 'shieldPU') puCount++;
+  if (puCount >= 1) return;
+  const r = Math.random();
+  const type = forceShield ? 'shieldPU' : ((r < (4/7)) ? 'magnetPU' : 'shieldPU');
+  const d = currentDifficulty();
+  let speed = (1.0 + Math.random() * 1.0) + 0.5 * (d - 1);
+  speed *= 0.8;
+  objects.push({ x: Math.random() * (BASE_W - 32), y: -32, size: 32, type, speed });
+  if (type === 'shieldPU') timeSinceShieldPU = 0;
+}
+        
+
+      function update(dt) {
+  // Impact timer
+  if (typeof impactTimer !== 'undefined' && impactTimer > 0) impactTimer = Math.max(0, impactTimer - dt);
+  // Particles
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.life += dt;
+    p.x += p.dx * dt;
+    p.y += p.dy * dt;
+    p.dy += 140 * dt; // gravity
+    if (p.life >= p.max) particles.splice(i, 1);
+  }
+  // Popups
+  for (let i = popups.length - 1; i >= 0; i--) {
+    const pp = popups[i];
+    pp.life += dt;
+    pp.y -= 20 * dt;
+    if (pp.life >= pp.max) popups.splice(i, 1);
+  }
+
+        if (!started || gameOver) return;
+        timeSinceShieldPU += dt;
+
+        // Powerup timer
+        powerupTimer -= dt;
+        if (powerupTimer <= 0) { spawnPowerup(); resetPowerupTimer(); }
+
+        if (magnetActive) { magnetTimer -= dt; if (magnetTimer <= 0) { magnetActive = false; magnetTimer = 0; } }
+        if (keys['ArrowLeft'] || keys['a']) basket.x -= basket.speed;
+        if (keys['ArrowRight'] || keys['d']) basket.x += basket.speed;
+        basket.x = Math.max(0, Math.min(BASE_W - basket.width, basket.x));
+
+        const shrink = Math.min(20, Math.floor(timeSinceStart / 15) * 2);
+        basket.width = Math.max(40, basketDefaultWidth - shrink);
+
+        for (let i = 0; i < objects.length; i++) {
+          const o = objects[i]; o.y += o.speed * 60 * dt * Math.max(1, fpsEstimate/60);
+
+          if (magnetActive && o.type === 'banana') {
+            const bx = basket.x + basket.width/2;
+            const cx = o.x + o.size/2;
+            const dx = bx - cx;
+            const distX = Math.abs(dx);
+            // Only attract when banana is close to the basket vertically
+            const nearY = (o.y + o.size) > (basket.y - 120);
+            if (nearY && distX <= 150) {
+              // Gentle horizontal nudge; keeps normal falling
+              o.x += dx * 0.04;
+            }
+          }
+          const hbX = basket.x + 6, hbY = basket.y + 8, hbW = basket.width - 12, hbH = basket.height - 16;
+
+          
+          if (o.x < hbX + hbW && o.x + o.size > hbX && o.y < hbY + hbH && o.y + o.size > hbY) {
+            if (o.type === 'banana') {
+              const __gained = Math.round(3 * currentMultiplier());
+              score += __gained; impactTimer = 0.30; spawnParticles(o.x + o.size/2, o.y + o.size/2, 6);
+              popups.push({ x: Math.round(basket.x), y: Math.round(basket.y) - 6, text: '+' + __gained, life: 0, max: 0.7 });
+            } else if (o.type === 'bomb') {
+              if (shieldCount > 0) {
+                shieldCount -= 1;
+                impactTimer = 0.25;
+                spawnParticles(o.x + o.size/2, o.y + o.size/2, 12);
+              } else {
+                gameOver = true; dragging = false;
+                try { bgm.pause(); } catch(e) {}
+                try { sndBomb.currentTime = 0; sndBomb.play(); } catch(e) {}
+              }
+            } else if (o.type === 'magnetPU') {
+              magnetActive = true; magnetTimer = 6.0;
+              popups.push({ x: Math.round(basket.x), y: Math.round(basket.y) - 12, text: 'MAGNET!', life: 0, max: 0.8 });
+            } else if (o.type === 'shieldPU') {
+              shieldCount += 1;
+               timeSinceShieldPU = 0; popups.push({ x: Math.round(basket.x), y: Math.round(basket.y) - 12, text: 'SHIELD +1', life: 0, max: 0.8 });
+            }
+            objects.splice(i, 1);
+            i--;
+            continue;
+          }
+
+
+          if (o.y > BASE_H) { objects.splice(i, 1); i--; }
+        }
+
+        const d = currentDifficulty();
+        const spawnProb = Math.min(0.06, SPAWN_BASE * Math.pow(d, 0.8));
+        if (Math.random() < spawnProb) spawnObject();
+        if (d > 2 && Math.random() < 0.1 * (d - 2)) spawnObject();
+      }
+
+      function drawStartScreen() {
+        if (bgReady) { ctx.drawImage(bgImg, 0, 0, BASE_W, BASE_H); } else { ctx.fillStyle = '#0a0a0a'; ctx.fillRect(0, 0, BASE_W, BASE_H); }
+        if (!fontReady) { ctx.fillStyle = 'white'; drawPixelTextCentered('Loading font...', BASE_H/2, 16); return; }
+
+        const startSize = 20, instSize = 12, lineSpacing = 22, gap = 28;
+        const blockHeight = startSize + gap + 4*lineSpacing;
+        const topY = Math.round((BASE_H - blockHeight) / 2);
+
+        ctx.fillStyle = 'white';
+        if (blinkVisible()) drawPixelTextCentered('Click or Tap to Start', topY + startSize, startSize);
+
+        const instTop = topY + startSize + gap;
+        drawPixelTextCentered('- Collect bananas for points -', instTop + 0*lineSpacing, instSize);
+        drawPixelTextCentered('- Avoid the bombs -',           instTop + 1*lineSpacing, instSize);
+        drawPixelTextCentered('- Bombs drop faster as game goes on -', instTop + 2*lineSpacing, instSize);
+        drawPixelTextCentered('- Good luck ape! -',            instTop + 3*lineSpacing, instSize);
+
+        ctx.drawImage(monkeyImg, Math.round(basket.x), Math.round(basket.y), Math.round(basket.width), Math.round(basket.height));
+      
+        
+        
+        
+        
+        // Shield visual ring around the ape (pixel-art)
+        if (typeof shieldCount !== 'undefined' && shieldCount > 0) {
+          const cx = Math.round(basket.x + basket.width/2);
+          const cy = Math.round(basket.y + basket.height/2);
+          const r  = Math.round(Math.max(basket.width, basket.height) * 0.65);
+          const __t = Date.now() * 0.001; const __rp = Math.round(r * (1 + 0.08 * Math.sin(__t * 2.5))); drawPixelRing(cx, cy, __rp, 'white');
+        }
+    
+        
+        // Shield visual ring around the ape (pixel-art)
+        if (typeof shieldCount !== 'undefined' && shieldCount > 0) {
+          const cx = Math.round(basket.x + basket.width/2);
+          const cy = Math.round(basket.y + basket.height/2);
+          const r  = Math.round(Math.max(basket.width, basket.height) * 0.65);
+          const __t = Date.now() * 0.001; const __rp = Math.round(r * (1 + 0.08 * Math.sin(__t * 2.5))); drawPixelRing(cx, cy, __rp, 'white');
+        }
+    
+    }
+
+      function draw() {
+        ctx.save(); ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,canvas.width,canvas.height); ctx.restore(); if (bgReady) { ctx.drawImage(bgImg, 0, 0, BASE_W, BASE_H); } else { ctx.fillStyle = '#0a0a0a'; ctx.fillRect(0,0,BASE_W,BASE_H); }
+
+        if (!started) { drawStartScreen(); return; }
+
+        if (impactTimer > 0) { const t = Math.max(0, Math.min(1, impactTimer/0.30)); const sx = 1 + 0.22*(1-t); const sy = 1 - 0.15*(1-t); const cx = Math.round(basket.x + basket.width/2), cy = Math.round(basket.y + basket.height/2); ctx.save(); ctx.translate(cx, cy); ctx.scale(sx, sy); ctx.translate(-cx, -cy); } ctx.drawImage(monkeyImg, Math.round(basket.x), Math.round(basket.y), Math.round(basket.width), Math.round(basket.height));
+        
+        // Shield visual ring around the ape (pixel-art)
+        if (typeof shieldCount !== 'undefined' && shieldCount > 0) {
+          const cx = Math.round(basket.x + basket.width/2);
+          const cy = Math.round(basket.y + basket.height/2);
+          const r  = Math.round(Math.max(basket.width, basket.height) * 0.65);
+          const __t = Date.now() * 0.001; const __rp = Math.round(r * (1 + 0.08 * Math.sin(__t * 2.5))); drawPixelRing(cx, cy, __rp, 'white');
+        }
+    
+
+         if (impactTimer > 0) { ctx.restore(); }
+        for (const o of objects) {
+          if (o.type === 'banana') {
+            ctx.drawImage(bananaImg, Math.round(o.x), Math.round(o.y), o.size, o.size);
+          } else if (o.type === 'bomb') {
+            ctx.drawImage(bombImg, Math.round(o.x), Math.round(o.y), o.size, o.size);
+          } else if (o.type === 'magnetPU') { ctx.drawImage(magnetImg, Math.round(o.x), Math.round(o.y), o.size, o.size); } else if (o.type === 'shieldPU') { ctx.drawImage(shieldImg, Math.round(o.x), Math.round(o.y), o.size, o.size); } else {
+            ctx.drawImage(bananaImg, Math.round(o.x), Math.round(o.y), o.size, o.size);
+          }
+        }
+    
+
+        // Spark particles
+        for (const p of particles) {
+          const a = 1 - (p.life / p.max);
+          ctx.globalAlpha = a;
+          ctx.fillStyle = 'yellow';
+          ctx.fillRect(Math.round(p.x), Math.round(p.y), 3, 3);
+          ctx.globalAlpha = 1;
+        }
+        // Popups
+        for (const pp of popups) {
+          const a = 1 - (pp.life / pp.max);
+          ctx.globalAlpha = a;
+          ctx.fillStyle = 'white';
+          drawPixelText(pp.text, Math.round(pp.x), Math.round(pp.y), 12, 'left');
+          ctx.globalAlpha = 1;
+        }
+        ctx.fillStyle = 'white'; drawPixelTextCentered('Score: ' + score, 40, 12);
+          ctx.fillStyle = 'yellow'; drawPixelTextCentered('Multiplier: ' + currentMultiplier().toFixed(1) + 'x', 58, 10);
+        if (magnetActive) { ctx.fillStyle = 'rgb(0,170,0)'; drawPixelText('Magnet: ' + Math.ceil(magnetTimer) + 's', 10, BASE_H - 12, 10, 'left'); }
+        if (shieldCount > 0) { ctx.fillStyle = 'rgb(0,170,170)'; drawPixelText('Shield: ' + shieldCount, 10, BASE_H - 24, 10, 'left'); }
+
+        if (gameOver) {
+
+          if (!window.__bc_posted__) {
+
+            const scores = loadScores();
+            const entry = { handle: player.handle || 'anon', base: player.base || '', score: score, ts: Date.now() };
+            scores.push(entry);
+            scores.sort((a,b) => b.score - a.score || a.ts - b.ts);
+            while (scores.length > 10) scores.pop();
+            saveScores(scores);
+            window.__bc_posted__ = true;
+
+            postGlobalScore(entry).then(() => fetchGlobalScores()).then((arr) => { if (arr) globalScores = arr; });
+          }
+
+          const titleSize = 24, infoSize = 14, lineGap = 18;
+          const blockHeight = titleSize + lineGap + infoSize + lineGap + infoSize;
+          const topY = Math.round((BASE_H - blockHeight) / 2);
+
+          ctx.fillStyle = 'red'; drawPixelTextCentered('GAME OVER', topY + titleSize, titleSize);
+            if (blinkVisible()) {
+
+            ctx.fillStyle = '#000'; drawPixelText('Score: ' + score, BASE_W/2 + 2, topY + titleSize + 2*lineGap + 2*infoSize + 2, infoSize, 'center'); ctx.fillStyle = 'rgb(0,170,0)'; drawPixelTextCentered('Score: ' + score, topY + titleSize + 2*lineGap + 2*infoSize, infoSize); }
+        }
+
+        if (gameOver) { restartBtn.style.display = 'block'; positionRestartButton(); }
+        else { restartBtn.style.display = 'none'; }
+
+      }
+
+function spawnParticles(x, y, count=10) {
+  const colors = ['#FFD93D', '#FF9A3D', '#9FFF3D', '#3DFFEC', '#FFFFFF'];
+  for (let i = 0; i < count; i++) {
+    const ang = Math.random() * Math.PI * 2;
+    const spd = 40 + Math.random() * 80;
+    particles.push({ x, y, dx: Math.cos(ang)*spd, dy: Math.sin(ang)*spd - 30, life: 0, max: 0.35 + Math.random()*0.25, color: colors[Math.floor(Math.random()*colors.length)] });
+  }
+}
+function loop() { const now = performance.now(), dt = (now - lastTime) / 1000; lastTime = now;
+    // One-time JSONP score submit on game over
+    if (gameOver && !prevGameOver && !scoreSubmitted) {
+      try { setLeaderboardVisible(true); } catch(_) {}
+
+      scoreSubmitted = true;
+      try {
+        const session = localStorage.getItem('sessionId') || (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
+        localStorage.setItem('sessionId', session);
+        const xEl = document.getElementById('xHandle');
+        const bEl = document.getElementById('baseAddr');
+        const xHandle = xEl && xEl.value ? xEl.value.trim() : '';
+        const wallet  = bEl && bEl.value ? bEl.value.trim() : 'unknown';
+        submitScoreJSONP({ wallet, xHandle, score, session });
+      } catch (_) {}
+    }
+    prevGameOver = gameOver;
+     const instFPS = dt > 0 ? (1/dt) : 60; fpsEstimate = Math.max(30, Math.min(240, fpsAlpha*instFPS + (1-fpsAlpha)*fpsEstimate)); if (started && !gameOver) timeSinceStart += dt; update(dt); draw(); requestAnimationFrame(loop); }
+      loop();
+    })();
+  </script>
+
+<script id="lb-script">
+function renderLeaderboard(list) {
+  list = Array.isArray(list) ? list.slice(0,5) : [];
+  const box = document.querySelector('#leaderboard .lb-list');
+  if (!box) return;
+  if (!list.length) { box.innerHTML = '<div class="lb-empty">No scores yet</div>'; return; }
+  box.innerHTML = list.map((r,i) => {
+    const user = (r.xHandle && r.xHandle.trim()) ? r.xHandle.trim()
+               : (r.wallet ? (r.wallet.slice(0,6)+'…'+r.wallet.slice(-4)) : 'Unknown');
+    return '<div class="lb-row">'
+         +   '<span class="rank">' + (i+1) + '. </span>'
+         +   '<span class="user">' + user + '</span>'
+         +   '<span class="score">' + String(r.score) + '</span>'
+         + '</div>';
+  }).join('');
+}
+
+(function(){
+  function startLB(){
+    if (typeof loadTop10JSONP === 'function') {
+      loadTop10JSONP(renderLeaderboard);
+      setInterval(function(){ loadTop10JSONP(renderLeaderboard); }, 20000);
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startLB, {once:true});
+  else startLB();
+})();
+</script>
+
+<script id="jsonp-score-helpers">
+// === JSONP helpers for Google Apps Script (clean) ===
+const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby_ex8nxwcn6aUSvJUwrKQHp1AImQAEvBK8_iPMlgGgLKfSdBx1fM8n2S2JoTE4rIDt/exec';
+
+function submitScoreJSONP({ wallet, xHandle, score, session, token }) {
+  try {
+    const cbName = 'jsonp_cb_' + Math.random().toString(36).slice(2);
+    window[cbName] = function(resp){
+      try { if (resp && resp.leaderboard && typeof renderLeaderboard === 'function') renderLeaderboard(resp.leaderboard); }
+      finally { try { delete window[cbName]; } catch(_){} }
+    };
+    const params = new URLSearchParams({
+      action: 'submit',
+      wallet: wallet || 'unknown',
+      xHandle: xHandle || '',
+      score: String(Number(score)||0),
+      session: session || (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())),
+      ua: navigator.userAgent,
+      origin: location.origin,
+      callback: cbName
+    });
+    if (token) params.set('token', token);
+    const s = document.createElement('script');
+    s.src = GAS_WEB_APP_URL + '?' + params.toString();
+    s.async = true;
+    document.body.appendChild(s);
+  } catch (_e) { /* ignore */ }
+}
+
+function loadTop10JSONP(cb) {
+  try {
+    const cbName = 'jsonp_lb_' + Math.random().toString(36).slice(2);
+    let settled = false;
+    window[cbName] = function(resp){
+      settled = true;
+      try { cb(resp && resp.leaderboard ? resp.leaderboard : []); }
+      finally { try { delete window[cbName]; } catch(_){} }
+    };
+    const params = new URLSearchParams({ action: 'top10', callback: cbName });
+    const s = document.createElement('script');
+    s.src = GAS_WEB_APP_URL + '?' + params.toString();
+    s.async = true;
+    s.onerror = function(){ if (!settled) cb([]); };
+    document.body.appendChild(s);
+    setTimeout(function(){ if (!settled) cb([]); }, 4000);
+  } catch (_e) { cb([]); }
+}
+</script>
+
+<script id="lb-visibility-helper">
+function setLeaderboardVisible(show){
+  var lb = document.getElementById('leaderboard');
+  if (!lb) return;
+  if (show) lb.classList.remove('lb-hidden');
+  else lb.classList.add('lb-hidden');
+}
+</script>
+
+<script id="lb-loader-jsonp">
+(function(){
+  function startLB(){
+    if (typeof loadTop10JSONP === 'function') {
+      loadTop10JSONP(renderLeaderboard);
+      setInterval(function(){ loadTop10JSONP(renderLeaderboard); }, 20000);
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startLB, {once:true});
+  else startLB();
+})();
+</script>
+
+<script id="restart-handler-fix">
+(function(){
+  function safeBindRestart(){
+    var btn = document.getElementById('restartBtn') ||
+              document.querySelector('.btn-restart') ||
+              Array.from(document.querySelectorAll('button')).find(b => /restart|play again|try again/i.test(b.textContent || ''));
+    if(!btn) return;
+
+    function triggerRestart(e){
+      try { e && e.preventDefault && e.preventDefault(); } catch(_){}
+      // If your code exposes restartGame(), call it; else fallback to reloading
+      if (typeof restartGame === 'function') restartGame();
+      else if (typeof startGame === 'function') startGame();
+      else location.reload();
+    }
+
+    // Remove previous to avoid duplicates
+    btn.onclick = null;
+    btn.ontouchend = null;
+
+    btn.addEventListener('click', triggerRestart);
+    btn.addEventListener('touchend', function(e){
+      e.preventDefault();
+      triggerRestart(e);
+    }, { passive: false });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', safeBindRestart, {once:true});
+  else safeBindRestart();
+
+  // In case the restart button is rendered after game over, observe DOM changes
+  var obs = new MutationObserver(function(){
+    safeBindRestart();
+  });
+  obs.observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+<script id="restart-delegated-handler">
+(function(){
+  function isRestartEl(el){
+    return !!(el && (
+      el.id === 'restartBtn' ||
+      (el.classList && (el.classList.contains('btn-restart') || el.classList.contains('restart'))) ||
+      el.hasAttribute && el.hasAttribute('data-restart')
+    ));
+  }
+  function findRestartEl(target){
+    while (target && target !== document){
+      if (isRestartEl(target)) return target;
+      target = target.parentNode;
+    }
+    return null;
+  }
+  function triggerRestart(e){
+    try { e && e.preventDefault && e.preventDefault(); } catch(_){}
+    try { e && e.stopPropagation && e.stopPropagation(); } catch(_){}
+    try { e && e.stopImmediatePropagation && e.stopImmediatePropagation(); } catch(_){}
+    if (typeof restartGame === 'function') { restartGame(); return; }
+    if (typeof startGame === 'function') { startGame(); return; }
+    location.reload();
+  }
+
+  // Delegate to document to catch dynamically inserted game-over UI
+  ['click', 'touchend', 'pointerup'].forEach(function(type){
+    document.addEventListener(type, function(e){
+      var t = findRestartEl(e.target);
+      if (!t) return;
+      // On touch/pointer, prefer a single invocation
+      if (type !== 'click') {
+        // mark to ignore the subsequent click
+        t.__justRestarted = Date.now();
+      } else {
+        if (t.__justRestarted && (Date.now() - t.__justRestarted) < 350) return;
+      }
+      triggerRestart(e);
+    }, { passive: false });
+  });
+
+  // Make sure overlays don't swallow clicks
+  var style = document.createElement('style');
+  style.textContent = '.gameover-overlay, #gameover, .overlay { pointer-events: none; } ' +
+                      '#restartBtn, .btn-restart, .restart, [data-restart] { pointer-events: auto; }';
+  document.documentElement.appendChild(style);
+})();
+</script>
+<script id="gate-session-logic">
+(function(){
+  // Gate is shown initially (fresh page). After first start or any restart, we set __gateDone=true.
+  window.__gateDone = window.__gateDone || false;
+
+  function hideGate(){
+    try{
+      var gate = document.getElementById('gate');
+      if (gate) { gate.style.display = 'none'; gate.setAttribute('aria-hidden','true'); }
+    }catch(_){}
+  }
+  function markGateDone(){ window.__gateDone = true; }
+
+  // If the page defines any openers for the gate, patch them to respect the flag
+  function patchGateOpeners(){
+    ['showGate','openGate','openPremodal','showPremodal'].forEach(function(name){
+      try {
+        if (typeof window[name] === 'function' && !window[name].__patchedForGate){
+          var orig = window[name];
+          var wrapped = function(){
+            if (window.__gateDone) { hideGate(); return; }
+            return orig.apply(this, arguments);
+          };
+          wrapped.__patchedForGate = true;
+          window[name] = wrapped;
+        }
+      } catch(_){}
+    });
+  }
+
+  function bindStart(){
+    var start = document.getElementById('gateBtn') ||
+                document.querySelector('[data-start], .btn-start');
+    if (!start) return;
+    var onStart = function(){
+      // First start → mark done so future restarts skip the gate
+      markGateDone();
+    };
+    start.addEventListener('click', onStart, {capture:true});
+    start.addEventListener('touchend', onStart, {capture:true, passive:true});
+  }
+
+  function bindRestart(){
+    var btn = document.getElementById('restartBtn') ||
+              document.querySelector('.btn-restart, .restart, [data-restart]') ||
+              Array.from(document.querySelectorAll('button')).find(function(b){
+                return /restart|play again|try again/.test((b.textContent||'').toLowerCase());
+              });
+    if (!btn) return;
+
+    function onRestart(e){
+      try { if (e && e.preventDefault) e.preventDefault(); } catch(_){}
+      try { if (e && e.stopPropagation) e.stopPropagation(); } catch(_){}
+      try { if (e && e.stopImmediatePropagation) e.stopImmediatePropagation(); } catch(_){}
+      markGateDone();
+      hideGate();
+      patchGateOpeners();
+      if (typeof startGame === 'function') { startGame(); return; }
+      if (typeof restartGame === 'function') { restartGame(); return; }
+      location.reload();
+    }
+    // Capture-phase so we pre-empt any gate logic
+    btn.addEventListener('click', onRestart, {capture:true});
+    btn.addEventListener('touchend', onRestart, {capture:true, passive:false});
+  }
+
+  // Keep bindings fresh if the DOM changes (game over overlays, etc.)
+  var mo = new MutationObserver(function(){
+    patchGateOpeners();
+    if (window.__gateDone) hideGate();
+    bindStart();
+    bindRestart();
+  });
+  mo.observe(document.documentElement, { childList:true, subtree:true });
+
+  // Initial run: DO NOT hide gate on load. Show it normally the first time.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(){
+      patchGateOpeners();
+      bindStart();
+      bindRestart();
+    }, { once:true });
+  } else {
+    patchGateOpeners();
+    bindStart();
+    bindRestart();
+  }
+})();
+</script>
+
+<script id="gate-validation">
+(function(){
+  function updateGateBtn(){
+    var btn = document.getElementById('gateBtn');
+    var xEl = document.getElementById('xHandle');
+    var bEl = document.getElementById('baseAddr');
+    if (!btn || !xEl || !bEl) return;
+    var ok = xEl.value.trim().length > 0 && /^0x[a-fA-F0-9]{40}$/.test(bEl.value.trim());
+    
+    btn.disabled = !ok;
+    btn.style.opacity = ok ? '1' : '0.5';
+    btn.style.pointerEvents = ok ? 'auto' : 'none';
+  }
+  document.addEventListener('input', updateGateBtn, true);
+  document.addEventListener('DOMContentLoaded', updateGateBtn);
+})();
+</script>
+
+</body>
+</html>
