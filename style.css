@@ -1,0 +1,1521 @@
+html, body{overflow-x: hidden !important;}to{ transform: translateX(-50%); }to{transform:translateX(-50%)}@media (max-width:768px){.jc-carousel{margin:0}.jc-carousel img{width:clamp(120px,42vw,260px)}}@media (prefers-reduced-motion:reduce){.jc-carousel-track{animation:none}}@media (max-width:768px){.jc-carousel img{width:clamp(120px,42vw,260px)}}html, body{ margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }html, body{ margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }html, body{ margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }html, body{ margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }html, body{ margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }@supports (-webkit-touch-callout: none){
+
+}html, body{ margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }.overlay, .overlay-row{ overflow: visible !important; }@supports (-moz-appearance: none){
+
+  @media (min-width: 1024px) {
+
+    html, body { margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }
+    .overlay, .overlay-row { overflow: visible !important; }
+  }
+}.lore{width:100%;margin:32px 0;padding:0}.lore-inner{max-width:960px;margin:0 auto;padding:0 16px;box-sizing:border-box}.lore h2{font-size:clamp(24px,4.2vw,36px);line-height:1.15;margin:0 0 10px 0;letter-spacing:1px}.lore p{font-size:clamp(14px,2.2vw,18px);line-height:1.6;margin:0}@media (max-width:768px){.lore{margin:24px 0}.lore-inner{padding:0 12px}}.lore, .lore-inner{ text-align: center !important; }.lore h2{ margin-left: auto !important; margin-right: auto !important; }.lore p{ margin-left: auto !important; margin-right: auto !important; }.lore p + p{ margin-top: 1em !important; }.lore p + p{ margin-top: 1em !important; }@media (min-width: 768px){
+  .lore p + p { margin-top: 1.25em !important; }
+}@media (max-width: 768px){
+  .lore, .lore-inner, .lore h2, .lore p,
+  .lore::before, .lore::after, .lore-inner::before, .lore-inner::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+  .lore::before, .lore::after,
+  .lore-inner::before, .lore-inner::after {
+    content: none !important;
+  }
+}.lore h2 + p{ margin-top: 1em !important; }.lore h2 + p{ margin-top: 1em !important; }@media (min-width: 768px){
+  .lore h2 + p { margin-top: 1.25em !important; }
+}100%{ transform: translateX(-100%); }html, body{ overflow-x: hidden; }html, body{ margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }.overlay, .overlay-row, .lore, .lore-inner{ overflow: visible !important; }html, body{ margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }.overlay, .overlay-row, .lore, .lore-inner{ overflow: visible !important; }@supports (-moz-appearance: none){
+
+}html, body{ margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }@supports (-moz-appearance: none){
+
+}html, body{ margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }.overlay, .overlay-row, .lore, .lore-inner{ overflow: visible !important; }@supports (-moz-appearance: none){
+
+}html, body{ overflow-x: hidden; }html, body{ overflow-x: hidden; }@media (prefers-reduced-motion: reduce){ .jc-group { animation: none !important; } }html, body{ overflow-x: hidden; }html, body{ overflow-x: hidden; }.jc-carousel-top{
+  position: relative;
+  display: block;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+  z-index: auto;
+}.jc-carousel-top__track{
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+  white-space: nowrap;
+}.jc-carousel-top__group{
+  display: flex;
+  flex-shrink: 0;
+  animation: jc-top-marquee 30s linear infinite;
+}.jc-carousel-top__group:nth-child(2){ animation-delay: -15s; }.jc-carousel-top img{
+  display: block;
+  height: auto;
+  flex: 0 0 auto;
+  margin: 0;
+  width: clamp(140px, 22vw, 320px);
+}:root{ --top-carousel-h: 0px; }@media (min-width: 769px){
+  
+}.jc-carousel-top__group{ animation: none !important; }.jc-carousel-top__track{ will-change: transform; }.gallery{width:100%;margin:32px 0;padding:0;background:transparent}.gallery-inner{max-width:1200px;margin:0 auto;padding:0 16px;box-sizing:border-box}.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.gallery-grid img{display:block;width:100%;height:auto;object-fit:cover}@media(max-width:768px){
+  .gallery-inner{padding:0 12px}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+}@media (max-width: 768px){
+
+  
+  .overlay-row { margin: 0 !important; padding: 0 !important; }
+
+}@media (max-width: 768px){
+
+  
+  .overlay-row   { margin: 0 !important; padding: 0 !important; }
+}.gallery-grid{ gap: 16px !important; }.gallery-grid img{ box-shadow: 0 8px 20px rgba(0,0,0,0.35), 0 2px 6px rgba(0,0,0,0.2); }@media (max-width: 768px){
+  .gallery-grid { gap: 12px !important; }
+}.gallery-grid img{
+  border-radius: 6px !important;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.48), 0 4px 12px rgba(0,0,0,0.30) !important;
+}.gallery-grid{ gap: 12px !important; }@media (max-width: 768px){
+  .gallery-grid { gap: 12px !important; }
+}.gallery-grid img{
+  border-radius: 6px !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.30), 0 2px 8px rgba(0,0,0,0.20) !important;
+}.gallery-grid img{ border-radius: 12px !important; }\n\n
+
+.gallery-grid img{
+  border: 1px solid rgba(255,255,255,0.85) !important;
+  box-sizing: border-box !important;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+\n
+
+html, body { margin: 0 !important; padding: 0 !important; }
+
+@media (max-width: 768px) {
+  .overlay { display: flow-root !important; }
+}
+
+@media (max-width: 768px) {
+
+  .btn-opensea, .btn-x {
+    font-size: 14px !important;
+    padding: 10px 14px !important;
+    max-width: calc(100% - 24px) !important;
+    display: inline-block !important;
+    box-sizing: border-box !important;
+  }
+
+  .overlay .buttons, .overlay .btn-row, .overlay-row .buttons {
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    padding: 0 8px !important;
+  }
+
+  .lore { margin-bottom: 12px !important; }
+  .lore + .gallery { margin-top: 8px !important; }
+  .gallery { margin-top: 12px !important; }
+}
+
+.faq{width:100%;margin:32px 0;background:transparent}
+.faq-inner{max-width:1200px;margin:0 auto;padding:0 16px;box-sizing:border-box}
+.faq-title{font-size:clamp(22px, 3vw, 30px);text-align:center;margin:0 0 16px 0}
+.faq-item{border-radius:10px;border:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.02);margin:10px 0;overflow:hidden}
+.faq-item[open]{background:rgba(255,255,255,0.04)}
+.faq-item summary{cursor:pointer;list-style:none;padding:14px 16px;margin:0;position:relative;font-weight:600;outline:none}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';position:absolute;right:14px;top:50%;transform:translateY(-50%);opacity:0.8}
+.faq-item[open] summary::after{content:'−'}
+.faq-answer{padding:0 16px 16px 16px;line-height:1.6}
+@media(max-width:768px){
+  .faq-inner{padding:0 12px}
+  .faq{margin:24px 0}
+  .faq-title{margin-bottom:12px}
+}
+
+.faq-item { border: 2px solid rgba(255,255,255,0.9) !important; }
+
+.faq-item { border-color: currentColor !important; }
+
+@media (max-width: 768px) {
+  .lore { display: flow-root !important; margin-bottom: 8px !important; }
+  .lore > *:first-child { margin-top: 0 !important; }
+  .lore > *:last-child  { margin-bottom: 0 !important; }
+
+  .gallery { margin-top: 8px !important; }
+  .gallery > *:first-child { margin-top: 0 !important; }
+}
+
+@media (max-width: 768px){
+
+  .lore, .gallery { display: flow-root !important; }
+
+  .lore { margin-bottom: 0 !important; padding-bottom: 0 !important; border-bottom: 0.1px solid transparent !important; }
+  .lore > *:last-child { margin-bottom: 0 !important; }
+  .lore + .gallery { margin-top: 0 !important; }
+
+  .lore::before, .lore::after, .lore-inner::before, .lore-inner::after { content: none !important; display: none !important; height: 0 !important; }
+
+  .lore, .gallery, .lore-inner, .gallery-inner { min-height: 0 !important; }
+}
+
+.gallery img {
+  position: relative;
+  top: 6px;
+}
+
+@media (max-width: 768px) {
+  .roadmap,
+  .roadmap-section,
+  #roadmap {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+}
+
+.cta-buttons a,
+a.btn,
+a.btn-opensea,
+a.btn-telegram,
+a.btn-x,
+a.btn-minigame {
+  min-width: 200px;
+  text-align: center;
+  display: inline-block;
+}
+
+@media (max-width: 480px) {
+  .cta-buttons a,
+  a.btn,
+  a.btn-opensea,
+  a.btn-telegram,
+  a.btn-x,
+  a.btn-minigame {
+    min-width: 160px;
+  }
+}
+
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.cta-buttons a {
+  flex: 1 1 200px;
+}
+
+a.btn-unknown:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 #000;
+}
+
+@media (max-width: 768px) {
+  
+}
+
+@media (max-width: 480px) {
+  
+}
+
+/* essential: unknown button desktop size equal to OpenSea */
+
+/* essential: mobile scaling for unknown */
+@media (max-width: 768px) {
+  
+}
+
+/* Desktop: Unknown matches OpenSea exactly */
+
+
+/* Mobile: keep Unknown button same size as others and in the CTA list (below Minigame) */
+@media (max-width: 768px) {
+  .cta-buttons { display: flex; flex-direction: column; gap: 12px; }
+  .cta-buttons a { width: 100%; max-width: 100%; box-sizing: border-box; }
+  
+}
+
+/* Mobile visibility: use the mobile CTA list only */
+@media (max-width: 768px) {
+  .cta-buttons { display: none !important; }
+  .cta-buttons-mobile { display: flex !important; flex-direction: column; gap: 12px; }
+  .cta-buttons-mobile a { width: 100%; box-sizing: border-box; }
+}
+
+/* Mobile: add top margin above hero */
+@media (max-width: 768px) {
+  .hero, .overlay-row.hero, .hero-section {
+    margin-top: 20px !important;
+  }
+}
+
+/* Force top gap on mobile for hero container */
+@media (max-width: 768px) {
+  body > .overlay:first-of-type {
+    margin-top: 20px !important;
+  }
+  .hero, .overlay-row.hero, .hero-section {
+    margin-top: 20px !important;
+  }
+}
+
+}
+
+/* FINAL override: ensure 23px gap above hero on mobile & tablets */
+@media (max-width: 1024px) {
+  body > 
+}
+
+/* Desktop only: match ??? button height to OpenSea exactly */
+@media (min-width: 1025px) {
+  .cta-buttons a.btn-unknown {
+    height: 52px !important;              /* target desktop visual height */
+    padding: 0 18px !important;           /* same side padding */
+    display: inline-flex !important;      /* vertical centering without line-height hacks */
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+}
+/* Preserve mobile/tablet behavior */
+@media (max-width: 1024px) {
+  .cta-buttons a.btn-unknown {
+    height: auto !important;
+    padding: var(--btn-padding-y, 14px) var(--btn-padding-x, 18px) !important;
+    display: inline-block !important;
+  }
+}
+
+
+
+/* ===== Retro Pixel Art Roadmap Revamp (scoped) ===== */
+.roadmap-section {
+  position: relative;
+  padding: 48px 16px;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 4px),
+    linear-gradient(180deg, rgba(22,26,33,0.85), rgba(12,14,18,0.95));
+  border-top: 2px solid rgba(255,255,255,0.06);
+  border-bottom: 2px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(2px);
+}
+
+.roadmap-section .section-title,
+.roadmap-section h2 {color: #3a2316 !important;
+  font-family: 'Press Start 2P', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  }
+
+/* Pixel grid for the list container */
+.roadmap-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Pixel card look */
+.roadmap-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 14px;
+  background:
+    linear-gradient(180deg, rgba(32,36,43,0.9), rgba(22,25,31,0.95));
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.5) inset, 0 8px 0 0 rgba(0, 0, 0, 0.5), 0 12px 16px rgba(0, 0, 0, 0.35);
+  /* Pixel frame via layered shadows */
+  outline: 0;
+  transition: transform 140ms steps(6, end), box-shadow 140ms steps(6, end);
+  border-radius: 0; /* keep it crisp */
+}
+
+.roadmap-item::before,
+.roadmap-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.roadmap-item::before {
+  /* 1px inner neon border */
+  box-shadow: inset 0 0 0 1px, inset 0 0 18px;
+}
+
+.roadmap-item::after {
+  /* scanline glaze */
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(255,255,255,0.015) 0 2px,
+    rgba(0,0,0,0.02) 2px 4px
+  );
+  opacity: 0.55;
+  mix-blend-mode: soft-light;
+}
+
+@media (hover:hover) and (pointer:fine) {
+  .roadmap-item:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 0 2px rgba(0,0,0,0.5) inset,
+      0 12px 0 0 rgba(0,0,0,0.55),
+      0 20px 24px rgba(0,0,0,0.4);
+  }
+}
+
+/* Sprite block */
+.roadmap-item > img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 2px 0 rgba(0,0,0,0.5)) drop-shadow(0 0 8px );
+}
+
+/* Text block with 8-bit vibes */
+.roadmap-item .roadmap-text h3 {
+  font-family: 'Press Start 2P', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', monospace;
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0 0 6px 0;
+  color: #3a2316 !important;
+  }
+
+.roadmap-item .roadmap-text p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #3a2316 !important;
+}
+
+/* Tiny pixel badge for stage number */
+.roadmap-item[data-stage]::marker { content: ""; }
+.roadmap-item .stage-badge {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  padding: 6px 8px;
+  background: linear-gradient(180deg, , #00d184);
+  color: #08140f;
+  box-shadow: 0 0 0 2px #06291f, 0 4px 0 0 rgba(0, 0, 0, 0.6);
+  transform: translateZ(0);
+}
+
+.roadmap-item .stage-badge::after {
+  content: attr(data-stage);
+}
+
+/* Divider between groups (optional if author uses groups) */
+.roadmap-divider {
+  height: 10px;
+  background:
+    linear-gradient(90deg,  0 6px, transparent 6px 12px),
+    linear-gradient(180deg, rgba(0,0,0,0.5), transparent);
+  background-size: 12px 100%, 100% 100%;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin: 8px 0;
+}
+
+/* Mobile fine-tuning */
+@media (max-width: 520px) {
+  .roadmap-item {
+    grid-template-columns: 64px 1fr;
+    gap: 10px;
+    padding: 12px;
+  }
+  .roadmap-item > img {
+    width: 60px; height: 60px;
+  }
+  .roadmap-item .roadmap-text h3 { font-size: 16px; }
+  .roadmap-item .roadmap-text p { font-size: 13px; }
+}
+/* ===== End Retro Pixel Art Roadmap Revamp ===== */
+
+
+
+
+
+
+
+.roadmap-section .section-title { color: #3a2316 !important; }
+
+
+/* Mobile bump for roadmap titles */
+@media (max-width: 520px) {
+  .roadmap-item .roadmap-text h3 { font-size: 14px; }
+}
+
+
+
+
+
+/* === Lore Parchment Card (minimal) === */
+.lore-section .lore-card {
+  position: relative;
+  max-width: 900px;
+  margin: 12px auto 0 auto;
+  padding: 18px 18px 22px 18px;
+  background: linear-gradient(180deg, rgba(245,225,196,0.92), rgba(245,225,196,0.86));
+  box-shadow:
+    0 0 0 2px rgba(0,0,0,0.45) inset,
+    0 8px 0 0 rgba(0,0,0,0.4),
+    0 16px 22px rgba(0,0,0,0.25);
+  color: #3a2316;
+}
+
+/* Pixel-corner accents */
+.lore-section .lore-card::before,
+.lore-section .lore-card::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #3a2316;
+  box-shadow: 2px 2px 0 #000;
+}
+.lore-section .lore-card::before { top: -2px; left: -2px; }
+.lore-section .lore-card::after  { bottom: -2px; right: -2px; }
+
+/* Comfortable reading width + upgraded typography */
+.lore-section .lore-card p {
+  max-width: 62ch;
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 10px auto 12px auto; /* center paragraphs within the card */
+}
+.lore-section .lore-card h3,
+.lore-section .lore-card h4 {
+  margin-top: 14px;
+  margin-bottom: 8px;
+}
+/* === End Lore Parchment Card (minimal) === */
+
+
+/* Lore section vertical offset */
+.lore-section { 
+  margin-top: 2%;
+}
+
+
+/* Center the roadmap section on all viewports */
+.roadmap-section { 
+  display: block;
+}
+
+.roadmap-section .roadmap-list {
+  max-width: 1100px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  justify-content: center; /* in case it becomes flex somewhere */
+  justify-items: stretch;  /* grid items fill their tracks */
+  align-content: start;
+}
+
+/* Slight padding symmetry to avoid right-heavy feeling */
+.roadmap-section { 
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (max-width: 520px) {
+  .roadmap-section .roadmap-list {
+    max-width: 100%;
+  }
+}
+
+
+/* Remove brown background on mobile for the lore section */
+@media (max-width: 768px) {
+  .lore-section {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+}
+
+
+/* === Hard-center Roadmap & neutralize parent padding/alignments === */
+section.roadmap {
+  position: relative;
+  max-width: 1100px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  align-items: stretch !important;
+  justify-content: initial !important;
+  display: block !important; /* override any global flex/grid on sections */
+  box-sizing: border-box;
+}
+
+section.roadmap > .roadmap-inner {
+  max-width: 1100px;
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box;
+}
+
+section.roadmap .roadmap-list {
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box;
+  justify-content: initial;
+  justify-items: stretch;
+}
+
+@media (max-width: 520px) {
+  section.roadmap,
+  section.roadmap > .roadmap-inner,
+  section.roadmap .roadmap-list {
+    max-width: 100%;
+  }
+}
+/* === End hard centering overrides === */
+
+.roadmap-title { font-size: clamp(20px, 4.6vw, 32px) !important; }
+
+/* Slight bump for Lore title */
+.lore-section h2 {
+  font-size: clamp(20px, 3.6vw, 30px);
+}
+
+
+/* Lore title 4px offset */
+.lore-section h2,
+section[aria-label="The Council's Lore"] h2 {
+  margin-top: 4px !important;
+}
+
+
+/* Lore card vertical spacing (moves parchment + text together) */
+.lore-section .lore-card { 
+  margin-top: 10px !important;
+}
+
+
+/* Extra gap between Lore heading and parchment on mobile */
+@media (max-width: 768px) {
+  .lore-section .lore-card {
+    margin-top: 18px !important; /* was 10px */
+  }
+}
+
+
+/* === Lore: mobile two‑sentence preview + Read more === */
+@media (max-width: 768px) {
+  .lore-section .lore-card .lore-toggle {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    line-height: 1;
+    padding: 10px 12px;
+    background: #f5e1c4;
+    color: #3a2316;
+    border: 3px solid #3a2316;
+    box-shadow: 3px 3px 0 #3a2316;
+    cursor: pointer;
+  }
+  .lore-section .lore-card .lore-toggle:active {
+    transform: translate(1px,1px);
+    box-shadow: 2px 2px 0 #3a2316;
+  }
+  .lore-section .lore-card .lore-rest { display: none; }
+  .lore-section .lore-card.expanded .lore-rest { display: block; }
+}
+/* === End Lore: mobile two‑sentence preview === */
+
+
+/* === Lore: Mobile two‑sentence preview + Read more (hardened) === */
+@media (max-width: 768px) {
+  .lore-card .lore-toggle {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    line-height: 1;
+    padding: 10px 12px;
+    background: #f5e1c4;
+    color: #3a2316;
+    border: 3px solid #3a2316;
+    box-shadow: 3px 3px 0 #3a2316;
+    cursor: pointer;
+  }
+  .lore-card .lore-toggle:active {
+    transform: translate(1px,1px);
+    box-shadow: 2px 2px 0 #3a2316;
+  }
+  /* Hide full text on mobile until expanded */
+  .lore-card .lore-rest { display: none; }
+  .lore-card.expanded .lore-rest { display: block; }
+  /* Ensure preview paragraph has normal spacing */
+  .lore-card .lore-preview { margin: 10px auto 12px auto; }
+}
+/* === End Mobile two‑sentence preview === */
+
+
+@media (max-width: 768px) {
+  .lore-card.expanded .lore-preview { display: none; }
+}
+
+
+/* === Lore: Mobile TWO-LINE clamp + toggle === */
+@media (max-width: 768px) {
+  .lore-card .lore-preview {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 10px auto 12px auto;
+  }
+  .lore-card .lore-rest { display: none; }
+  .lore-card.expanded .lore-rest { display: block; }
+  .lore-card.expanded .lore-preview { display: none; }
+  .lore-card .lore-toggle {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    line-height: 1;
+    padding: 10px 12px;
+    background: #f5e1c4;
+    color: #3a2316;
+    border: 3px solid #3a2316;
+    box-shadow: 3px 3px 0 #3a2316;
+    cursor: pointer;
+  }
+  .lore-card .lore-toggle:active {
+    transform: translate(1px,1px);
+    box-shadow: 2px 2px 0 #3a2316;
+  }
+}
+/* === End TWO-LINE clamp === */
+
+
+/* === Lore: soft fade at 2-line cutoff (mobile) === */
+@media (max-width: 768px) {
+  .lore-card .lore-preview {
+    position: relative;
+  }
+  .lore-card .lore-preview::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 1.6em; /* height of the fade */
+    /* Fade to parchment tone */
+    background: linear-gradient(to bottom, rgba(245,225,196,0), rgba(245,225,196,0.96));
+    pointer-events: none;
+  }
+  /* Remove fade when expanded */
+  .lore-card.expanded .lore-preview::after { display: none; }
+}
+/* === End soft fade === */
+
+
+
+
+
+
+
+
+/* Force Fullscreen Centering */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh; /* Full screen */
+  margin: 0;
+  padding: 0;
+}
+
+.hero-gif {
+  max-width: 80%;
+  max-height: 80%;
+  height: auto;
+  display: block;
+}
+
+/* === Extra CTA row === */
+.cta-extra {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cta-extra a { display: inline-block; }
+
+/* === CTA two-row spacing at top === */
+.cta-buttons, .cta-buttons-mobile { position: relative; z-index: 2; }
+.cta-extra {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* Ensure following sections start below */
+.overlay-spacer { min-height: 8px; }
+/* Hero and sections should not overlap the CTA rows */
+
+
+/* === Fixed: CTA second row sits below first row at the very top === */
+.cta-extra {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  width: 100%;
+}
+/* Overrule any button block styles that force full-width stacking */
+.cta-extra a { display: inline-flex !important; width: auto !important; }
+.cta-spacer { height: 24px; } /* separates CTAs from hero/next content */
+
+/* Keep CTA blocks on top of background art but in normal flow */
+.cta-buttons, .cta-buttons-mobile, .cta-extra { position: relative; z-index: 3; }
+
+
+/* === Hamburger Dropdown for 7 CTAs === */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+.menu-toggle { position: fixed; top: 16px; right: 16px; width: 1px; height: 1px; opacity: 0; z-index: 10001; }
+.hamburger {
+  position: fixed; top: 16px; right: 16px; width: 36px; height: 28px; cursor: pointer; z-index: 10002;
+  display: inline-flex; flex-direction: column; justify-content: space-between;
+}
+.hamburger span {
+  display: block; height: 4px; background: #000; border-radius: 2px; box-shadow: 0 1px 0 #fff inset;
+}
+/* Panel */
+.menu-panel {
+  position: fixed; top: 0; right: 0; transform: translateY(-110%);
+  width: min(92vw, 360px); background: rgba(0,0,0,0.72); color: #fff;
+  border-left: 2px solid #333; border-bottom: 2px solid #333;
+  padding: 72px 20px 20px; z-index: 10000; transition: transform 220ms ease;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.6);
+}
+.menu-panel ul { list-style: none; margin: 0; padding: 0; }
+.menu-panel li { margin: 10px 0; }
+.menu-panel a {
+  font-family: 'Press Start 2P', cursive; font-size: 14px; line-height: 1.4;
+  color: #fff; text-decoration: none; display: inline-block; padding: 10px 12px;
+  background: #1f6fbe; border: 3px solid #ffffff; box-shadow: 6px 6px 0 #0b0b0b;
+}
+.menu-toggle:checked ~ .menu-panel { transform: translateY(0%); }
+/* X icon animation */
+.menu-toggle:checked + .hamburger span:nth-child(1) { transform: translateY(12px) rotate(45deg); }
+.menu-toggle:checked + .hamburger span:nth-child(2) { opacity: 0; }
+.menu-toggle:checked + .hamburger span:nth-child(3) { transform: translateY(-12px) rotate(-45deg); }
+
+/* Hide old CTA rows to avoid conflicts */
+.cta-buttons, .cta-buttons-mobile, .cta-extra { display: none !important; }
+
+/* Make sure content sits under the fixed menu button visually */
+body { padding-top: 8px; }
+@media (max-width: 768px) { body { padding-top: 10px; } }
+
+
+/* Neutralize overlay-spacer project-wide */
+
+
+/* Retro Pixel Hamburger (non-persistent) overrides */
+.menu-toggle { position: absolute; top: 16px; right: 16px; width:1px; height:1px; opacity:0; z-index: 1001; }
+.hamburger { position: absolute; top: 16px; right: 16px; width: 48px; height: 40px; display: inline-flex; flex-direction: column; justify-content: space-between; background:#1f6fbe; border:4px solid #fff; box-shadow:8px 8px 0 #000; }
+.hamburger span { height: 6px; background:#000; box-shadow: inset 0 1px 0 #fff; display:block; }
+.menu-panel { position:absolute; top:0; right:0; transform: translateY(-110%); width:min(92vw,360px); background:#0b0b0b; color:#fff; border:4px solid #fff; padding:72px 20px 20px; box-shadow:12px 12px 0 #000; }
+.menu-panel ul { list-style:none; margin:0; padding:0; }
+.menu-panel li { margin: 10px 0; }
+.menu-panel a { color:#fff; text-decoration:none; background:#1f6fbe; border:3px solid #fff; box-shadow:6px 6px 0 #000; padding:10px 12px; display:inline-block; }
+.menu-toggle:checked ~ .menu-panel { transform: translateY(0); }
+.menu-toggle:checked + .hamburger span:nth-child(1) { transform: translateY(14px) rotate(45deg); }
+.menu-toggle:checked + .hamburger span:nth-child(2) { opacity:0; }
+.menu-toggle:checked + .hamburger span:nth-child(3) { transform: translateY(-14px) rotate(-45deg); }
+
+/* === Roadmap stacked vertically (override grid columns) === */
+.roadmap-list { display: block !important; }
+.roadmap-list .roadmap-item { margin: 16px 0 !important; }
+
+/* === Place hamburger & panel on the LEFT (mobile + desktop) === */
+.menu-toggle { left: 16px !important; right: auto !important; }
+.hamburger   { left: 16px !important; right: auto !important; }
+.menu-panel  { left: 0 !important;   right: auto !important; }
+
+/* === Standard Hamburger (black lines) + Wider green CTAs in dropdown === */
+/* Place on left (already set), ensure standard look */
+.hamburger {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 36px !important;
+  height: 28px !important;
+  padding: 0 !important;
+}
+.hamburger span {
+  height: 4px !important;
+  background: #000 !important;
+  box-shadow: none !important;
+  border-radius: 2px !important;
+}
+
+/* Dropdown panel CTA buttons: wider and revert to original green color */
+.menu-panel a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 12px 16px !important;
+  font-family: 'Press Start 2P', monospace !important;
+  background: #00d184 !important;            /* site green */
+  color: #08140f !important;                 /* dark text used on green buttons */
+  border: 2px solid #06291f !important;
+  box-shadow: 0 0 0 2px #06291f, 0 4px 0 0 rgba(0,0,0,0.6) !important;
+  text-decoration: none !important;
+}
+
+/* Hover/active feedback (subtle) */
+.menu-panel a:hover { filter: brightness(0.95) contrast(1.05); }
+.menu-panel a:active { transform: translateY(1px); }
+
+/* === Align hamburger with hero text (left edge of centered content) === */
+:root { --content-max: 960px; } /* matches .lore-inner max-width; adjust if your hero uses a different width */
+.menu-toggle,
+.hamburger {
+  left: max(16px, calc((100vw - var(--content-max, 960px)) / 2)) !important;
+  right: auto !important;
+}
+.menu-panel {
+  left: max(16px, calc((100vw - var(--content-max, 960px)) / 2)) !important;
+  right: auto !important;
+}
+
+/* === Desktop: nudge hamburger 50px further left === */
+@media (min-width: 1024px) {
+  .hamburger { transform: translateX(-50px) !important; }
+}
+
+/* === Mobile: keep dropdown and CTAs fully contained === */
+@media (max-width: 768px) {
+  .menu-panel {
+    position: absolute !important;
+    left: 16px !important;
+    right: 16px !important;   /* stretch within viewport minus 16px margins */
+    width: auto !important;   /* allow left+right to control width */
+    max-width: none !important;
+    box-sizing: border-box !important;
+    padding: 64px 16px 16px !important; /* reduce side padding so inner CTAs never bleed */
+    overflow-x: hidden !important;
+  }
+  .menu-panel a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Ensure hamburger menu items are clickable */
+.menu-panel a { pointer-events: auto !important; }
+
+/* Ensure menu panel sits above the hamburger label so links receive clicks */
+.menu-panel { z-index: 10050 !important; }
+.menu-panel a { pointer-events: auto !important; }
+
+/* === Clean black hamburger + translucent dropdown === */
+.hamburger {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.hamburger span {
+  height: 4px !important;
+  background: #000 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  border-radius: 0 !important;
+}
+.menu-panel {
+  background: rgba(0,0,0,0.85) !important;
+  background-color: rgba(0,0,0,0.72) !important;
+}
+
+/* === Ensure hamburger can close on mobile; add panel close control === */
+.hamburger { z-index: 10060 !important; }           /* stays above the panel to receive taps */
+.menu-panel { z-index: 10050 !important; }          /* panel below the button */
+.menu-panel .menu-close {
+  position: absolute; top: 10px; right: 10px;
+  width: 28px; height: 28px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; border: 2px solid #fff; background: transparent;
+  font-weight: 700; line-height: 1; text-decoration: none;
+  cursor: pointer; user-select: none;
+}
+.menu-panel .menu-close:active { transform: translateY(1px); }
+.menu-panel a { pointer-events: auto !important; }
+
+/* === Menu close: remove box, show plain text '✕' === */
+.menu-panel .menu-close {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+}
+
+/* === Hamburger line color override === */
+.hamburger span {
+  background: #251100 !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* === Hamburger: white + thinner lines === */
+.hamburger span {
+  background: #ffffff !important;
+  
+  box-shadow: none !important;
+  filter: none !important;
+  border-radius: 1px !important;
+}
+
+/* === Hamburger: #251100 with white outline (3px thin) === */
+.hamburger span {
+  background: #251100 !important;
+  
+  box-shadow: none !important;
+  filter: none !important;
+  border-radius: 0 !important;
+  outline: 1px solid #ffffff !important;
+  outline-offset: 0 !important;
+}
+
+/* === Hamburger: full white (no outline) === */
+.hamburger span {
+  background: #ffffff !important;
+  outline: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  border: none !important;
+}
+
+/* === Hamburger: force 2px thickness === */
+.hamburger span {
+  height: 2px !important;
+}
+
+/* === Specific colors for 4 CTAs inside hamburger dropdown === */
+.menu-panel a.cta-opensea {
+  background: linear-gradient(90deg, #3AA0FF 0%, #0A4FBF 100%) !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+.menu-panel a.cta-x {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+.menu-panel a.cta-minigame {
+  background: linear-gradient(90deg, #34E28E 0%, #0BAA5C 100%) !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+.menu-panel a.cta-jungle {
+  background: linear-gradient(90deg, #FFD84A 0%, #E0A800 100%) !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+
+/* === Solid colors for 4 CTAs (lightest gradient stops) === */
+.menu-panel a.cta-opensea { background: #3AA0FF !important; }
+.menu-panel a.cta-x       { background: #000000 !important; }
+.menu-panel a.cta-minigame{ background: #34E28E !important; }
+.menu-panel a.cta-jungle  { background: #FFD84A !important; }
+
+/* === Larger CTA text in hamburger dropdown (kept contained) === */
+.menu-panel a {
+  /* Responsive but capped for containment */
+  font-size: clamp(14px, 3.6vw, 18px) !important;
+  line-height: 1.35 !important;
+  padding: 14px 18px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  /* Ensure long labels wrap instead of overflowing */
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+/* === Specific solid colors for 3 CTAs inside hamburger dropdown === */
+.menu-panel a.cta-opensea  { background: #2081e2 !important; color: #ffffff !important; border-color: #ffffff !important; }
+.menu-panel a.cta-minigame { background: #2ecc71 !important; color: #ffffff !important; border-color: #ffffff !important; }
+.menu-panel a.cta-jungle   { background: #f1c40f !important; color: #ffffff !important; border-color: #ffffff !important; }
+
+/* === Bold CTA text inside hamburger dropdown === */
+
+/* === Unbold CTA text inside hamburger dropdown === */
+.menu-panel a { font-weight: 400 !important; }
+
+/* === Bigger CTA text (unbold) in hamburger dropdown === */
+.menu-panel a {
+  font-size: clamp(16px, 4vw, 20px) !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  padding: 16px 20px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+/* === Make Home, Whitepaper, Collabs, Whitelist white with white outline (dropdown only) === */
+.menu-panel a.cta-home,
+.menu-panel a.cta-whitepaper,
+.menu-panel a.cta-collabs,
+.menu-panel a.cta-whitelist {
+  background: #ffffff !important;
+  color: #08140f !important;        /* dark text for contrast */
+  border: 2px solid #ffffff !important;  /* white outline */
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+/* === Custom colors for Home / Whitepaper / Collabs / Whitelist (dropdown only) === */
+.menu-panel a.cta-whitelist  { background:#8e44ad !important; color:#ffffff !important; border:2px solid #ffffff !important; }
+.menu-panel a.cta-collabs    { background:#f39c12 !important; color:#ffffff !important; border:2px solid #ffffff !important; }
+.menu-panel a.cta-home       { background:#dbc596 !important; color:#ffffff !important; border:2px solid #ffffff !important; }
+.menu-panel a.cta-whitepaper { background:#ffffff !important; color:#000000 !important; border:2px solid #000000 !important; }
+
+/* === Thicker outlines for ALL CTA buttons in hamburger dropdown === */
+.menu-panel a {
+  border-width: 3px !important;   /* was 2px on many buttons */
+  border-style: solid !important;  /* enforce solid border everywhere */
+}
+
+/* === Bigger size for ALL CTA buttons in hamburger dropdown === */
+.menu-panel a {
+  font-size: clamp(18px, 4.8vw, 22px) !important;
+  line-height: 1.45 !important;
+  padding: 18px 22px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+/* === Revert CTA size; increase outline thickness only === */
+.menu-panel a {
+  /* Revert to earlier comfortable size */
+  font-size: clamp(16px, 4vw, 20px) !important;
+  padding: 16px 20px !important;
+  line-height: 1.4 !important;
+
+  /* Thicker outlines only (no size change) */
+  border-width: 4px !important;
+  border-style: solid !important;
+
+  /* Keep containment */
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+/* === Force 4px outlines on ALL CTAs (override class-specific 2px rules) === */
+.menu-panel a.cta-home,
+.menu-panel a.cta-whitepaper,
+.menu-panel a.cta-collabs,
+.menu-panel a.cta-whitelist,
+.menu-panel a.cta-opensea,
+.menu-panel a.cta-x,
+.menu-panel a.cta-minigame,
+.menu-panel a.cta-jungle {
+  border-width: 4px !important;
+  border-style: solid !important;
+}
+
+/* Preserve intended border colors from earlier rules */
+.menu-panel a.cta-whitepaper { border-color: #000000 !important; }
+.menu-panel a.cta-home, 
+.menu-panel a.cta-collabs, 
+.menu-panel a.cta-whitelist,
+.menu-panel a.cta-opensea, 
+.menu-panel a.cta-x, 
+.menu-panel a.cta-minigame, 
+.menu-panel a.cta-jungle { border-color: inherit; }
+
+/* === Mobile: center the close "X", ensure visibility & clickability when menu is open === */
+@media (max-width: 768px) {
+  /* Put the dropdown panel below the close button */
+  .menu-panel {
+    z-index: 10000 !important;
+  }
+  /* Center the close button and ensure it's visible above the panel */
+  .menu-toggle:checked + .hamburger {
+    position: fixed !important;
+    top: 16px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 10002 !important;
+    pointer-events: auto !important;
+    width: 44px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    color: #000 !important;              /* force contrast; adjust if your panel is dark */
+    background: transparent !important;  /* don't block background */
+  }
+  /* If the hamburger is built from spans/pseudo-elements, force their color */
+  .menu-toggle:checked + .hamburger span,
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    background-color: currentColor !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  /* If the icon is an SVG, inherit and force stroke/fill to currentColor */
+  .menu-toggle:checked + .hamburger svg,
+  .menu-toggle:checked + .hamburger svg * {
+    stroke: currentColor !important;
+    fill: currentColor !important;
+    opacity: 1 !important;
+  }
+}
+
+/* === Force-visible white 'X' when mobile menu is open === */
+@media (max-width: 768px) {
+  .menu-toggle:checked + .hamburger {
+    position: fixed !important;
+    top: 16px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 44px !important; height: 44px !important;
+    z-index: 10003 !important;
+    opacity: 1 !important; visibility: visible !important;
+    pointer-events: auto !important;
+    color: #fff !important; /* use white by default for dark overlays */
+  }
+  /* Draw an explicit 'X' regardless of internal markup */
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    content: "" !important;
+    position: fixed !important;
+    top: 38px !important;               /* 16px + (44/2) = center vertically */
+    left: 50% !important;
+    width: 28px !important;
+    height: 3px !important;
+    background: #fff !important;
+    transform-origin: center !important;
+    z-index: 10004 !important;
+    border-radius: 2px !important;
+    pointer-events: none !important;     /* clicks go to the label */
+  }
+  .menu-toggle:checked + .hamburger::before {
+    transform: translateX(-50%) rotate(45deg) !important;
+  }
+  .menu-toggle:checked + .hamburger::after {
+    transform: translateX(-50%) rotate(-45deg) !important;
+  }
+  /* Ensure panel is below */
+  .menu-panel {
+    z-index: 10000 !important;
+  }
+}
+
+/* === ULTRA: force-visible close 'X' on mobile when menu open === */
+@media (max-width: 768px) {
+  .menu-panel {
+    z-index: 1000000 !important;
+  }
+  .menu-toggle:checked + .hamburger {
+    position: fixed !important;
+    top: 16px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 44px !important; height: 44px !important;
+    z-index: 2147483647 !important; /* on top of everything */
+    pointer-events: auto !important;
+    color: #fff !important;
+    background: rgba(0,0,0,0.45) !important;  /* contrast bubble */
+    border-radius: 9999px !important;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.25) !important;
+  }
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    content: "" !important;
+    position: fixed !important;
+    top: 38px !important;
+    left: 50% !important;
+    width: 28px !important; height: 3px !important;
+    background: #fff !important;
+    transform-origin: center !important;
+    z-index: 2147483647 !important;
+    border-radius: 2px !important;
+    pointer-events: none !important;
+  }
+  .menu-toggle:checked + .hamburger::before { transform: translateX(-50%) rotate(45deg) !important; }
+  .menu-toggle:checked + .hamburger::after  { transform: translateX(-50%) rotate(-45deg) !important; }
+}
+
+/* === Center close 'X' in the MIDDLE of the dropdown on mobile (both axes) === */
+@media (max-width: 768px) {
+  .menu-panel { z-index: 1000000 !important; }
+  .menu-toggle:checked + .hamburger {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 56px !important; height: 56px !important;     /* bigger tap target */
+    z-index: 2147483647 !important;
+    pointer-events: auto !important;
+    color: #fff !important;
+    background: rgba(0,0,0,0.45) !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.25) !important;
+  }
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    content: "" !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 34px !important; height: 3px !important;
+    background: #fff !important;
+    transform-origin: center !important;
+    z-index: 2147483647 !important;
+    border-radius: 2px !important;
+    pointer-events: none !important;
+  }
+  .menu-toggle:checked + .hamburger::before { transform: translate(-50%, -50%) rotate(45deg) !important; }
+  .menu-toggle:checked + .hamburger::after  { transform: translate(-50%, -50%) rotate(-45deg) !important; }
+}
+
+/* === Mobile (menu open): place close 'X' at TOP-CENTER of dropdown === */
+@media (max-width: 768px) {
+  .menu-panel { z-index: 1000000 !important; }
+
+  /* Button container */
+  .menu-toggle:checked + .hamburger {
+    position: fixed !important;
+    top: 16px !important;               /* <-- TOP of dropdown */
+    left: 50% !important;               /* center horizontally */
+    transform: translateX(-50%) !important;
+    width: 56px !important;
+    height: 56px !important;
+    z-index: 2147483647 !important;
+    pointer-events: auto !important;
+    color: #fff !important;
+    background: rgba(0,0,0,0.45) !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.25) !important;
+  }
+
+  /* Draw the 'X' centered *inside* the button */
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    content: "" !important;
+    position: absolute !important;      /* relative to the fixed .hamburger */
+    top: 50% !important;
+    left: 50% !important;
+    width: 34px !important;
+    height: 3px !important;
+    background: #fff !important;
+    transform-origin: center !important;
+    z-index: 2147483647 !important;
+    border-radius: 2px !important;
+    pointer-events: none !important;
+  }
+  .menu-toggle:checked + .hamburger::before { transform: translate(-50%, -50%) rotate(45deg) !important; }
+  .menu-toggle:checked + .hamburger::after  { transform: translate(-50%, -50%) rotate(-45deg) !important; }
+}
+
+/* === Close button colors: white circle background, X = hero color === */
+@media (max-width: 768px) {
+  .menu-toggle:checked + .hamburger {
+    background: #ffffff !important;      /* white circle */
+    color: #000 !important;               /* X color = hero title color */
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.15) !important;
+  }
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    background: currentColor !important;  /* draw X using hero color */
+  }
+}
+
+/* === Close button colors: translucent white circle, X = #47342c === */
+@media (max-width: 768px) {
+  .menu-toggle:checked + .hamburger {
+    background: rgba(255, 255, 255, 0.70) !important; /* translucent white */
+    color: #47342c !important;                         /* X color */
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.10) !important; /* subtle outline on light bg */
+  }
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    background: currentColor !important;  /* draw the X using #47342c */
+  }
+}
+
+/* === Pixel-art rounded-square close button === */
+@media (max-width: 768px) {
+  .menu-toggle:checked + .hamburger {
+    /* colors requested */
+    background: rgba(255, 255, 255, 0.70) !important; /* translucent white */
+    color: #47342c !important;                         /* X color */
+    /* pixel rounded-square shape */
+    border-radius: 0 !important;
+    -webkit-clip-path: polygon(
+      28% 0%, 72% 0%,
+      76% 0%, 80% 4%, 84% 8%, 88% 12%, 92% 16%, 96% 20%, 100% 24%,
+      100% 72%,
+      100% 76%, 96% 80%, 92% 84%, 88% 88%, 84% 92%, 80% 96%, 76% 100%,
+      28% 100%,
+      24% 100%, 20% 96%, 16% 92%, 12% 88%, 8% 84%, 4% 80%, 0% 76%,
+      0% 28%,
+      0% 24%, 4% 20%, 8% 16%, 12% 12%, 16% 8%, 20% 4%, 24% 0%
+    ) !important;
+    clip-path: polygon(
+      28% 0%, 72% 0%,
+      76% 0%, 80% 4%, 84% 8%, 88% 12%, 92% 16%, 96% 20%, 100% 24%,
+      100% 72%,
+      100% 76%, 96% 80%, 92% 84%, 88% 88%, 84% 92%, 80% 96%, 76% 100%,
+      28% 100%,
+      24% 100%, 20% 96%, 16% 92%, 12% 88%, 8% 84%, 4% 80%, 0% 76%,
+      0% 28%,
+      0% 24%, 4% 20%, 8% 16%, 12% 12%, 16% 8%, 20% 4%, 24% 0%
+    ) !important;
+    image-rendering: pixelated;
+    box-shadow: 0 0 0 1px rgba(71, 52, 44, 0.25) !important;
+  }
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    background: currentColor !important;  /* draw X using #47342c */
+  }
+}
+
+/* === Force hamburger (three lines) to #47342c on desktop & mobile === */
+.hamburger { color: #47342c !important; }
+/* If lines are spans or elements inside */
+.hamburger span,
+.hamburger .line { background: #47342c !important; }
+/* If lines are drawn with pseudo-elements */
+.hamburger::before,
+.hamburger::after { background: #47342c !important; }
+/* If it's an SVG icon */
+.hamburger svg,
+.hamburger svg * { stroke: #47342c !important; fill: #47342c !important; }
+
+/* === Thicker hamburger lines & close X (3px) === */
+/* Desktop & Mobile: hamburger three bars */
+.hamburger span,
+.hamburger .line,
+.hamburger::before,
+.hamburger::after {
+  height: 3px !important;
+}
+
+/* If the icon is an SVG */
+.hamburger svg,
+.hamburger svg * {
+  stroke-width: 3px !important;
+}
+
+/* Mobile open state: ensure our drawn X uses 3px thickness */
+@media (max-width: 768px) {
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    height: 3px !important;
+  }
+}
+
+/* === Mobile close button uses CTA style (square) === */
+@media (max-width: 768px) {
+  .menu-toggle:checked + .hamburger {
+    /* Square, no rounded corners or pixel clip */
+    border-radius: 0 !important;
+    -webkit-clip-path: none !important;
+    clip-path: none !important;
+
+    /* Adopt CTA visual style */
+    background: linear-gradient(90deg, #3AA0FF 0%, #0A4FBF 100%) !important !important;
+    border: 2px solid #ffffff !important !important;
+    box-shadow: none !important !important;
+    
+    color: #47342c !important; /* X inherits this */
+  }
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    background: currentColor !important;
+    height: 3px !important; /* keep thicker X */
+  }
+}
+
+/* === Mobile close button: smaller square with 2px rounded corners === */
+@media (max-width: 768px) {
+  .menu-toggle:checked + .hamburger {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 2px !important;
+  }
+  /* Keep the X centered inside regardless of new size */
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    height: 3px !important;
+    /* position remains centered via existing translate(-50%, -50%) or 50% rules */
+  }
+}
+
+/* === Fix desktop dropdown top-gap (desktop only) === */
+@media (min-width: 769px) {
+  .menu-panel {
+    padding-top: 20px !important; /* reduce large mobile-oriented top padding */
+  }
+}
+
+/* === Mobile: nudge close 'X' to perfect center === */
+@media (max-width: 768px) {
+  /* Center container via flex in case absolute math differs per device DPR */
+  .menu-toggle:checked + .hamburger {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  /* Slight vertical tweak (1px) to counter optical/top-heavy placement */
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    margin-top: 1px !important;
+  }
+}

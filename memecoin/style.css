@@ -1,0 +1,1046 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    
+    .hero-overlay h1 {
+      font-size: 5rem !important;
+      line-height: 1.1;
+      font-family: 'Press Start 2P', cursive;
+      color: #FFD700;
+      text-shadow: 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000;
+      animation: pixelPulse 1.5s steps(2, start) infinite;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-overlay h1 { font-size: 3.6rem !important; }
+      
+    }
+    @media (max-width: 480px) {
+      .hero-overlay h1 { font-size: 2.6rem !important; }
+      
+    }
+
+    }
+
+  
+.pulse { animation: pixelPulse 1.5s steps(2, start) infinite; }
+
+
+    /* === Clean Fullscreen Hero Section === */
+    .hero {
+      display: flex;
+      flex-direction: column;  /* stack text above GIF */
+      justify-content: center; /* center as a unit vertically */
+      align-items: center;     /* center horizontally */
+      min-height: 100vh;       /* full screen height */
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .hero-overlay {
+      margin-bottom: 24px; /* spacing between text and GIF */
+      text-align: center;
+      position: static !important;
+      transform: none !important;
+    }
+    .hero-overlay h1 {
+      font-size: 5rem !important;
+      line-height: 1.1;
+      font-family: 'Press Start 2P', cursive;
+      color: #FFD700;
+      text-shadow: 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000;
+      animation: pixelPulse 1.5s steps(2, start) infinite;
+    }
+    .hero-gif {
+      max-width: 80%;
+      height: auto;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .hero-overlay h1 { font-size: 3.6rem !important; }
+      .hero-overlay { margin-bottom: 18px; }
+    }
+    @media (max-width: 480px) {
+      .hero-overlay h1 { font-size: 2.6rem !important; }
+      .hero-overlay { margin-bottom: 14px; }
+    }
+
+
+    /* === 3D Pop-out Depth Effect for $JUNGLE === */
+    .hero-overlay h1 {
+      font-size: 5rem !important;
+      line-height: 1.1;
+      font-family: 'Press Start 2P', cursive;
+      color: #FFD700;
+      text-shadow: 
+        3px 3px 0 #000,
+        -3px -3px 0 #000,
+        3px -3px 0 #000,
+        -3px 3px 0 #000,
+        6px 6px 0 rgba(0,0,0,0.6),
+        9px 9px 15px rgba(0,0,0,0.75);
+      transform: perspective(500px) translateZ(40px);
+      animation: pixelPulse 1.5s steps(2, start) infinite;
+    }
+    @media (max-width: 768px) {
+      .hero-overlay h1 { font-size: 3.6rem !important; }
+    }
+    @media (max-width: 480px) {
+      .hero-overlay h1 { font-size: 2.6rem !important; }
+    }
+
+  
+    /* === 3D Pop-out for $JUNGLE === */
+    .hero-overlay h1 {
+      /* keep existing font + sizing from clean block; add depth */
+      text-shadow:
+        3px 3px 0 #000,
+        -3px -3px 0 #000,
+        3px -3px 0 #000,
+        -3px 3px 0 #000,
+        6px 6px 0 rgba(0,0,0,0.6),
+        9px 9px 15px rgba(0,0,0,0.75);
+      transform: perspective(500px) translateZ(40px);
+      will-change: transform;
+    }
+
+  
+    /* === Jungle Background Restore === */
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('bg.png') no-repeat center center fixed;
+      background-size: cover;
+      background-color: #000; /* fallback */
+    }
+
+  
+    /* === Shift Hero Upward Slightly === */
+    .hero {
+      
+    }
+
+  
+    /* === Responsive Hero Shift === */
+    .hero {
+      transform: translateY(-8%);
+    }
+    @media (max-width: 768px) {
+      .hero { transform: translateY(-12%); }
+    }
+    @media (max-width: 480px) {
+      .hero { transform: translateY(-15%); }
+    }
+
+  
+    /* === Responsive Hero Shift === */
+    .hero { transform: translateY(-8%); }              /* desktop default */
+    @media (max-width: 768px) {
+      .hero { transform: translateY(-12%); }           /* tablets */
+    }
+    @media (max-width: 480px) {
+      .hero { transform: translateY(-15%); }           /* small phones */
+    }
+
+/* === Force $JUNGLE solid color override === */
+.hero-overlay h1 {
+  /* kill gradient clipping */
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+
+  /* set solid gold color */
+  color: #eaab2f !important;
+  -webkit-text-fill-color: #eaab2f !important;
+
+  /* optional: keep pulse only (drop shimmer) */
+  animation: pixelPulse 1.5s steps(2, start) infinite !important;
+}
+
+
+
+/* === More Info Message (below GIF) === */
+.more-info {
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+  margin: 16px 0 0 0;
+  font-size: 1.1rem;
+  letter-spacing: 0;
+}
+@media (max-width: 768px) { .more-info { font-size: 1rem; } }
+@media (max-width: 480px) { .more-info { font-size: 0.95rem; } }
+
+
+
+/* Subtle pulse for 'More info' line */
+@keyframes moreInfoPulse {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.86; }
+  100% { opacity: 1; }
+}
+.more-info {
+  animation: moreInfoPulse 2.4s ease-in-out infinite;
+  will-change: opacity;
+}
+@media (prefers-reduced-motion: reduce) {
+  .more-info { animation: none; }
+}
+
+
+
+/* Upgrade: softer glow + larger size for "More info" */
+.more-info {
+  font-size: 1.5rem !important; /* bigger on desktop */
+  text-shadow:
+    2px 2px 0 #000,                         /* crisp pixel-style drop */
+    0 0 6px rgba(234,171,47,0.85),          /* soft inner glow */
+    0 0 12px rgba(234,171,47,0.6),          /* mid glow */
+    0 0 18px rgba(234,171,47,0.35);         /* outer glow */
+}
+
+@media (max-width: 768px) {
+  .more-info { font-size: 1.2rem !important; }
+}
+@media (max-width: 480px) {
+  .more-info { font-size: 1.1rem !important; }
+}
+
+
+
+/* === Remove glow from "More info" line === */
+.more-info {
+  text-shadow: 2px 2px 0 #000 !important;
+}
+
+
+
+/* === Sub info line under the GIF === */
+.more-info-sub {
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+  margin: 8px 0 0 0;
+  font-size: 1.1rem;
+  letter-spacing: 0;
+}
+@media (max-width: 768px) { .more-info-sub { font-size: 1rem; } }
+@media (max-width: 480px) { .more-info-sub { font-size: 0.95rem; } }
+
+
+
+/* Links styling for follow line */
+.more-info-sub a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.more-info-sub a:hover {
+  text-decoration-thickness: 2px;
+}
+
+
+
+/* === Spacing + Size tweak for lines under GIF === */
+.more-info {
+  margin-top: 24px !important;      /* shift down a bit more */
+  font-size: 1.65rem !important;    /* slightly larger */
+}
+.more-info-sub {
+  margin-top: 10px !important;      /* tiny gap between the two lines */
+  font-size: 1.25rem !important;    /* slightly larger */
+}
+@media (max-width: 768px) {
+  .more-info { margin-top: 20px !important; font-size: 1.3rem !important; }
+  .more-info-sub { font-size: 1.1rem !important; }
+}
+@media (max-width: 480px) {
+  .more-info { margin-top: 16px !important; font-size: 1.2rem !important; }
+  .more-info-sub { font-size: 1.0rem !important; }
+}
+
+
+
+/* === Mobile viewport spacing fix === */
+html, body { margin: 0; padding: 0; overflow-x: hidden; }
+
+/* Prefer dynamic/small viewport units to avoid extra space with browser UI bars */
+@media (max-width: 768px) {
+  .hero { min-height: 100dvh; }
+}
+@supports (height: 100svh) {
+  @media (max-width: 768px) {
+    .hero { min-height: 100svh; }
+  }
+}
+
+/* Reduce upward shift on small phones so we don't create bottom whitespace */
+@media (max-width: 480px) {
+  .hero { transform: translateY(-6%) !important; } /* was likely -12% or -15% */
+  .more-info-sub { margin-bottom: 0 !important; }
+}
+
+/* Safety: ensure the hero section doesn't add extra margins/padding at bottom */
+.hero { margin-bottom: 0 !important; padding-bottom: 0 !important; }
+
+/* === Extra CTA row === */
+.cta-extra {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cta-extra a { display: inline-block; }
+
+/* === CTA two-row spacing at top === */
+.cta-buttons, .cta-buttons-mobile { position: relative; z-index: 2; }
+.cta-extra {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* Ensure following sections start below */
+.overlay-spacer { min-height: 8px; }
+/* Hero and sections should not overlap the CTA rows */
+
+
+/* === Fixed: CTA second row sits below first row at the very top === */
+.cta-extra {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  width: 100%;
+}
+/* Overrule any button block styles that force full-width stacking */
+.cta-extra a { display: inline-flex !important; width: auto !important; }
+.cta-spacer { height: 24px; } /* separates CTAs from hero/next content */
+
+/* Keep CTA blocks on top of background art but in normal flow */
+.cta-buttons, .cta-buttons-mobile, .cta-extra { position: relative; z-index: 3; }
+
+
+/* === Hamburger Dropdown for 7 CTAs === */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+.menu-toggle { position: fixed; top: 16px; right: 16px; width: 1px; height: 1px; opacity: 0; z-index: 10001; }
+.hamburger {
+  position: fixed; top: 16px; right: 16px; width: 36px; height: 28px; cursor: pointer; z-index: 10002;
+  display: inline-flex; flex-direction: column; justify-content: space-between;
+}
+.hamburger span {
+  display: block; height: 4px; background: #000; border-radius: 2px; box-shadow: 0 1px 0 #fff inset;
+}
+/* Panel */
+.menu-panel {
+  position: fixed; top: 0; right: 0; transform: translateY(-110%);
+  width: min(92vw, 360px); background: rgba(0,0,0,0.72); color: #fff;
+  border-left: 2px solid #333; border-bottom: 2px solid #333;
+  padding: 72px 20px 20px; z-index: 10000; transition: transform 220ms ease;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.6);
+}
+.menu-panel ul { list-style: none; margin: 0; padding: 0; }
+.menu-panel li { margin: 10px 0; }
+.menu-panel a {
+  font-family: 'Press Start 2P', cursive; font-size: 14px; line-height: 1.4;
+  color: #fff; text-decoration: none; display: inline-block; padding: 10px 12px;
+  background: #1f6fbe; border: 3px solid #ffffff; box-shadow: 6px 6px 0 #0b0b0b;
+}
+.menu-toggle:checked ~ .menu-panel { transform: translateY(0%); }
+/* X icon animation */
+.menu-toggle:checked + .hamburger span:nth-child(1) { transform: translateY(12px) rotate(45deg); }
+.menu-toggle:checked + .hamburger span:nth-child(2) { opacity: 0; }
+.menu-toggle:checked + .hamburger span:nth-child(3) { transform: translateY(-12px) rotate(-45deg); }
+
+/* Hide old CTA rows to avoid conflicts */
+.cta-buttons, .cta-buttons-mobile, .cta-extra { display: none !important; }
+
+/* Make sure content sits under the fixed menu button visually */
+body { padding-top: 8px; }
+@media (max-width: 768px) { body { padding-top: 10px; } }
+
+
+/* Neutralize overlay-spacer project-wide */
+
+
+/* Retro Pixel Hamburger (non-persistent) overrides */
+.menu-toggle { position: absolute; top: 16px; right: 16px; width:1px; height:1px; opacity:0; z-index: 1001; }
+.hamburger { position: absolute; top: 16px; right: 16px; width: 48px; height: 40px; display: inline-flex; flex-direction: column; justify-content: space-between; background:#1f6fbe; border:4px solid #fff; box-shadow:8px 8px 0 #000; }
+.hamburger span { height: 6px; background:#000; box-shadow: inset 0 1px 0 #fff; display:block; }
+.menu-panel { position:absolute; top:0; right:0; transform: translateY(-110%); width:min(92vw,360px); background:#0b0b0b; color:#fff; border:4px solid #fff; padding:72px 20px 20px; box-shadow:12px 12px 0 #000; }
+.menu-panel ul { list-style:none; margin:0; padding:0; }
+.menu-panel li { margin: 10px 0; }
+.menu-panel a { color:#fff; text-decoration:none; background:#1f6fbe; border:3px solid #fff; box-shadow:6px 6px 0 #000; padding:10px 12px; display:inline-block; }
+.menu-toggle:checked ~ .menu-panel { transform: translateY(0); }
+.menu-toggle:checked + .hamburger span:nth-child(1) { transform: translateY(14px) rotate(45deg); }
+.menu-toggle:checked + .hamburger span:nth-child(2) { opacity:0; }
+.menu-toggle:checked + .hamburger span:nth-child(3) { transform: translateY(-14px) rotate(-45deg); }
+
+/* === Place hamburger & panel on the LEFT (mobile + desktop) === */
+.menu-toggle { left: 16px !important; right: auto !important; }
+.hamburger   { left: 16px !important; right: auto !important; }
+.menu-panel  { left: 0 !important;   right: auto !important; }
+
+/* === Standard Hamburger (black lines) + Wider green CTAs in dropdown === */
+/* Place on left (already set), ensure standard look */
+.hamburger {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 36px !important;
+  height: 28px !important;
+  padding: 0 !important;
+}
+.hamburger span {
+  height: 4px !important;
+  background: #000 !important;
+  box-shadow: none !important;
+  border-radius: 2px !important;
+}
+
+/* Dropdown panel CTA buttons: wider and revert to original green color */
+.menu-panel a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 12px 16px !important;
+  font-family: 'Press Start 2P', monospace !important;
+  background: #00d184 !important;            /* site green */
+  color: #08140f !important;                 /* dark text used on green buttons */
+  border: 2px solid #06291f !important;
+  box-shadow: 0 0 0 2px #06291f, 0 4px 0 0 rgba(0,0,0,0.6) !important;
+  text-decoration: none !important;
+}
+
+/* Hover/active feedback (subtle) */
+.menu-panel a:hover { filter: brightness(0.95) contrast(1.05); }
+.menu-panel a:active { transform: translateY(1px); }
+
+/* === Align hamburger with hero text (left edge of centered content) === */
+:root { --content-max: 960px; } /* matches .lore-inner max-width; adjust if your hero uses a different width */
+.menu-toggle,
+.hamburger {
+  left: max(16px, calc((100vw - var(--content-max, 960px)) / 2)) !important;
+  right: auto !important;
+}
+.menu-panel {
+  left: max(16px, calc((100vw - var(--content-max, 960px)) / 2)) !important;
+  right: auto !important;
+}
+
+/* === Desktop: nudge hamburger 50px further left === */
+@media (min-width: 1024px) {
+  .hamburger { transform: translateX(-50px) !important; }
+}
+
+/* === Mobile: keep dropdown and CTAs fully contained === */
+@media (max-width: 768px) {
+  .menu-panel {
+    position: absolute !important;
+    left: 16px !important;
+    right: 16px !important;   /* stretch within viewport minus 16px margins */
+    width: auto !important;   /* allow left+right to control width */
+    max-width: none !important;
+    box-sizing: border-box !important;
+    padding: 64px 16px 16px !important; /* reduce side padding so inner CTAs never bleed */
+    overflow-x: hidden !important;
+  }
+  .menu-panel a {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Ensure hamburger menu items are clickable */
+.menu-panel a { pointer-events: auto !important; }
+
+/* Ensure menu panel sits above the hamburger label so links receive clicks */
+.menu-panel { z-index: 10050 !important; }
+.menu-panel a { pointer-events: auto !important; }
+
+/* === Clean black hamburger + translucent dropdown === */
+.hamburger {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.hamburger span {
+  height: 4px !important;
+  background: #000 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  border-radius: 0 !important;
+}
+.menu-panel {
+  background: rgba(0,0,0,0.85) !important;
+  background-color: rgba(0,0,0,0.72) !important;
+}
+
+/* === Ensure hamburger can close on mobile; add panel close control === */
+.hamburger { z-index: 10060 !important; }           /* stays above the panel to receive taps */
+.menu-panel { z-index: 10050 !important; }          /* panel below the button */
+.menu-panel .menu-close {
+  position: absolute; top: 10px; right: 10px;
+  width: 28px; height: 28px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; border: 2px solid #fff; background: transparent;
+  font-weight: 700; line-height: 1; text-decoration: none;
+  cursor: pointer; user-select: none;
+}
+.menu-panel .menu-close:active { transform: translateY(1px); }
+.menu-panel a { pointer-events: auto !important; }
+
+/* === Menu close: remove box, show plain text '✕' === */
+.menu-panel .menu-close {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+}
+
+/* === Hamburger line color override === */
+.hamburger span {
+  background: #251100 !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* === Hamburger: white + thinner lines === */
+.hamburger span {
+  background: #ffffff !important;
+  
+  box-shadow: none !important;
+  filter: none !important;
+  border-radius: 1px !important;
+}
+
+/* === Hamburger: #251100 with white outline (3px thin) === */
+.hamburger span {
+  background: #251100 !important;
+  
+  box-shadow: none !important;
+  filter: none !important;
+  border-radius: 0 !important;
+  outline: 1px solid #ffffff !important;
+  outline-offset: 0 !important;
+}
+
+/* === Hamburger: full white (no outline) === */
+.hamburger span {
+  background: #ffffff !important;
+  outline: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  border: none !important;
+}
+
+/* === Hamburger: force 2px thickness === */
+.hamburger span {
+  height: 2px !important;
+}
+
+/* === Specific colors for 4 CTAs inside hamburger dropdown === */
+.menu-panel a.cta-opensea {
+  background: linear-gradient(90deg, #3AA0FF 0%, #0A4FBF 100%) !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+.menu-panel a.cta-x {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+.menu-panel a.cta-minigame {
+  background: linear-gradient(90deg, #34E28E 0%, #0BAA5C 100%) !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+.menu-panel a.cta-jungle {
+  background: linear-gradient(90deg, #FFD84A 0%, #E0A800 100%) !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+
+/* === Solid colors for 4 CTAs (lightest gradient stops) === */
+.menu-panel a.cta-opensea { background: #3AA0FF !important; }
+.menu-panel a.cta-x       { background: #000000 !important; }
+.menu-panel a.cta-minigame{ background: #34E28E !important; }
+.menu-panel a.cta-jungle  { background: #FFD84A !important; }
+
+/* === Larger CTA text in hamburger dropdown (kept contained) === */
+.menu-panel a {
+  /* Responsive but capped for containment */
+  font-size: clamp(14px, 3.6vw, 18px) !important;
+  line-height: 1.35 !important;
+  padding: 14px 18px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  /* Ensure long labels wrap instead of overflowing */
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+/* === Specific solid colors for 3 CTAs inside hamburger dropdown === */
+.menu-panel a.cta-opensea  { background: #2081e2 !important; color: #ffffff !important; border-color: #ffffff !important; }
+.menu-panel a.cta-minigame { background: #2ecc71 !important; color: #ffffff !important; border-color: #ffffff !important; }
+.menu-panel a.cta-jungle   { background: #f1c40f !important; color: #ffffff !important; border-color: #ffffff !important; }
+
+/* === Bold CTA text inside hamburger dropdown === */
+
+/* === Unbold CTA text inside hamburger dropdown === */
+.menu-panel a { font-weight: 400 !important; }
+
+/* === Bigger CTA text (unbold) in hamburger dropdown === */
+.menu-panel a {
+  font-size: clamp(16px, 4vw, 20px) !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  padding: 16px 20px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+/* === Make Home, Whitepaper, Collabs, Whitelist white with white outline (dropdown only) === */
+.menu-panel a.cta-home,
+.menu-panel a.cta-whitepaper,
+.menu-panel a.cta-collabs,
+.menu-panel a.cta-whitelist {
+  background: #ffffff !important;
+  color: #08140f !important;        /* dark text for contrast */
+  border: 2px solid #ffffff !important;  /* white outline */
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+/* === Custom colors for Home / Whitepaper / Collabs / Whitelist (dropdown only) === */
+.menu-panel a.cta-whitelist  { background:#8e44ad !important; color:#ffffff !important; border:2px solid #ffffff !important; }
+.menu-panel a.cta-collabs    { background:#f39c12 !important; color:#ffffff !important; border:2px solid #ffffff !important; }
+.menu-panel a.cta-home       { background:#dbc596 !important; color:#ffffff !important; border:2px solid #ffffff !important; }
+.menu-panel a.cta-whitepaper { background:#ffffff !important; color:#000000 !important; border:2px solid #000000 !important; }
+
+/* === Thicker outlines for ALL CTA buttons in hamburger dropdown === */
+.menu-panel a {
+  border-width: 3px !important;   /* was 2px on many buttons */
+  border-style: solid !important;  /* enforce solid border everywhere */
+}
+
+/* === Bigger size for ALL CTA buttons in hamburger dropdown === */
+.menu-panel a {
+  font-size: clamp(18px, 4.8vw, 22px) !important;
+  line-height: 1.45 !important;
+  padding: 18px 22px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+/* === Revert CTA size; increase outline thickness only === */
+.menu-panel a {
+  /* Revert to earlier comfortable size */
+  font-size: clamp(16px, 4vw, 20px) !important;
+  padding: 16px 20px !important;
+  line-height: 1.4 !important;
+
+  /* Thicker outlines only (no size change) */
+  border-width: 4px !important;
+  border-style: solid !important;
+
+  /* Keep containment */
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+/* === Force 4px outlines on ALL CTAs (override class-specific 2px rules) === */
+.menu-panel a.cta-home,
+.menu-panel a.cta-whitepaper,
+.menu-panel a.cta-collabs,
+.menu-panel a.cta-whitelist,
+.menu-panel a.cta-opensea,
+.menu-panel a.cta-x,
+.menu-panel a.cta-minigame,
+.menu-panel a.cta-jungle {
+  border-width: 4px !important;
+  border-style: solid !important;
+}
+
+/* Preserve intended border colors from earlier rules */
+.menu-panel a.cta-whitepaper { border-color: #000000 !important; }
+.menu-panel a.cta-home, 
+.menu-panel a.cta-collabs, 
+.menu-panel a.cta-whitelist,
+.menu-panel a.cta-opensea, 
+.menu-panel a.cta-x, 
+.menu-panel a.cta-minigame, 
+.menu-panel a.cta-jungle { border-color: inherit; }
+
+/* === Mobile: center the close "X", ensure visibility & clickability when menu is open === */
+@media (max-width: 768px) {
+  /* Put the dropdown panel below the close button */
+  .menu-panel {
+    z-index: 10000 !important;
+  }
+  /* Center the close button and ensure it's visible above the panel */
+  .menu-toggle:checked + .hamburger {
+    position: fixed !important;
+    top: 16px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 10002 !important;
+    pointer-events: auto !important;
+    width: 44px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    color: #000 !important;              /* force contrast; adjust if your panel is dark */
+    background: transparent !important;  /* don't block background */
+  }
+  /* If the hamburger is built from spans/pseudo-elements, force their color */
+  .menu-toggle:checked + .hamburger span,
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    background-color: currentColor !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  /* If the icon is an SVG, inherit and force stroke/fill to currentColor */
+  .menu-toggle:checked + .hamburger svg,
+  .menu-toggle:checked + .hamburger svg * {
+    stroke: currentColor !important;
+    fill: currentColor !important;
+    opacity: 1 !important;
+  }
+}
+
+/* === Force-visible white 'X' when mobile menu is open === */
+@media (max-width: 768px) {
+  .menu-toggle:checked + .hamburger {
+    position: fixed !important;
+    top: 16px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 44px !important; height: 44px !important;
+    z-index: 10003 !important;
+    opacity: 1 !important; visibility: visible !important;
+    pointer-events: auto !important;
+    color: #fff !important; /* use white by default for dark overlays */
+  }
+  /* Draw an explicit 'X' regardless of internal markup */
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    content: "" !important;
+    position: fixed !important;
+    top: 38px !important;               /* 16px + (44/2) = center vertically */
+    left: 50% !important;
+    width: 28px !important;
+    height: 3px !important;
+    background: #fff !important;
+    transform-origin: center !important;
+    z-index: 10004 !important;
+    border-radius: 2px !important;
+    pointer-events: none !important;     /* clicks go to the label */
+  }
+  .menu-toggle:checked + .hamburger::before {
+    transform: translateX(-50%) rotate(45deg) !important;
+  }
+  .menu-toggle:checked + .hamburger::after {
+    transform: translateX(-50%) rotate(-45deg) !important;
+  }
+  /* Ensure panel is below */
+  .menu-panel {
+    z-index: 10000 !important;
+  }
+}
+
+/* === ULTRA: force-visible close 'X' on mobile when menu open === */
+@media (max-width: 768px) {
+  .menu-panel {
+    z-index: 1000000 !important;
+  }
+  .menu-toggle:checked + .hamburger {
+    position: fixed !important;
+    top: 16px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 44px !important; height: 44px !important;
+    z-index: 2147483647 !important; /* on top of everything */
+    pointer-events: auto !important;
+    color: #fff !important;
+    background: rgba(0,0,0,0.45) !important;  /* contrast bubble */
+    border-radius: 9999px !important;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.25) !important;
+  }
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    content: "" !important;
+    position: fixed !important;
+    top: 38px !important;
+    left: 50% !important;
+    width: 28px !important; height: 3px !important;
+    background: #fff !important;
+    transform-origin: center !important;
+    z-index: 2147483647 !important;
+    border-radius: 2px !important;
+    pointer-events: none !important;
+  }
+  .menu-toggle:checked + .hamburger::before { transform: translateX(-50%) rotate(45deg) !important; }
+  .menu-toggle:checked + .hamburger::after  { transform: translateX(-50%) rotate(-45deg) !important; }
+}
+
+/* === Center close 'X' in the MIDDLE of the dropdown on mobile (both axes) === */
+@media (max-width: 768px) {
+  .menu-panel { z-index: 1000000 !important; }
+  .menu-toggle:checked + .hamburger {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 56px !important; height: 56px !important;     /* bigger tap target */
+    z-index: 2147483647 !important;
+    pointer-events: auto !important;
+    color: #fff !important;
+    background: rgba(0,0,0,0.45) !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.25) !important;
+  }
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    content: "" !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 34px !important; height: 3px !important;
+    background: #fff !important;
+    transform-origin: center !important;
+    z-index: 2147483647 !important;
+    border-radius: 2px !important;
+    pointer-events: none !important;
+  }
+  .menu-toggle:checked + .hamburger::before { transform: translate(-50%, -50%) rotate(45deg) !important; }
+  .menu-toggle:checked + .hamburger::after  { transform: translate(-50%, -50%) rotate(-45deg) !important; }
+}
+
+/* === Mobile (menu open): place close 'X' at TOP-CENTER of dropdown === */
+@media (max-width: 768px) {
+  .menu-panel { z-index: 1000000 !important; }
+
+  /* Button container */
+  .menu-toggle:checked + .hamburger {
+    position: fixed !important;
+    top: 16px !important;               /* <-- TOP of dropdown */
+    left: 50% !important;               /* center horizontally */
+    transform: translateX(-50%) !important;
+    width: 56px !important;
+    height: 56px !important;
+    z-index: 2147483647 !important;
+    pointer-events: auto !important;
+    color: #fff !important;
+    background: rgba(0,0,0,0.45) !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.25) !important;
+  }
+
+  /* Draw the 'X' centered *inside* the button */
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    content: "" !important;
+    position: absolute !important;      /* relative to the fixed .hamburger */
+    top: 50% !important;
+    left: 50% !important;
+    width: 34px !important;
+    height: 3px !important;
+    background: #fff !important;
+    transform-origin: center !important;
+    z-index: 2147483647 !important;
+    border-radius: 2px !important;
+    pointer-events: none !important;
+  }
+  .menu-toggle:checked + .hamburger::before { transform: translate(-50%, -50%) rotate(45deg) !important; }
+  .menu-toggle:checked + .hamburger::after  { transform: translate(-50%, -50%) rotate(-45deg) !important; }
+}
+
+/* === Close button colors: white circle background, X = hero color === */
+@media (max-width: 768px) {
+  .menu-toggle:checked + .hamburger {
+    background: #ffffff !important;      /* white circle */
+    color: #000 !important;               /* X color = hero title color */
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.15) !important;
+  }
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    background: currentColor !important;  /* draw X using hero color */
+  }
+}
+
+/* === Close button colors: translucent white circle, X = #47342c === */
+@media (max-width: 768px) {
+  .menu-toggle:checked + .hamburger {
+    background: rgba(255, 255, 255, 0.70) !important; /* translucent white */
+    color: #47342c !important;                         /* X color */
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.10) !important; /* subtle outline on light bg */
+  }
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    background: currentColor !important;  /* draw the X using #47342c */
+  }
+}
+
+/* === Pixel-art rounded-square close button === */
+@media (max-width: 768px) {
+  .menu-toggle:checked + .hamburger {
+    /* colors requested */
+    background: rgba(255, 255, 255, 0.70) !important; /* translucent white */
+    color: #47342c !important;                         /* X color */
+    /* pixel rounded-square shape */
+    border-radius: 0 !important;
+    -webkit-clip-path: polygon(
+      28% 0%, 72% 0%,
+      76% 0%, 80% 4%, 84% 8%, 88% 12%, 92% 16%, 96% 20%, 100% 24%,
+      100% 72%,
+      100% 76%, 96% 80%, 92% 84%, 88% 88%, 84% 92%, 80% 96%, 76% 100%,
+      28% 100%,
+      24% 100%, 20% 96%, 16% 92%, 12% 88%, 8% 84%, 4% 80%, 0% 76%,
+      0% 28%,
+      0% 24%, 4% 20%, 8% 16%, 12% 12%, 16% 8%, 20% 4%, 24% 0%
+    ) !important;
+    clip-path: polygon(
+      28% 0%, 72% 0%,
+      76% 0%, 80% 4%, 84% 8%, 88% 12%, 92% 16%, 96% 20%, 100% 24%,
+      100% 72%,
+      100% 76%, 96% 80%, 92% 84%, 88% 88%, 84% 92%, 80% 96%, 76% 100%,
+      28% 100%,
+      24% 100%, 20% 96%, 16% 92%, 12% 88%, 8% 84%, 4% 80%, 0% 76%,
+      0% 28%,
+      0% 24%, 4% 20%, 8% 16%, 12% 12%, 16% 8%, 20% 4%, 24% 0%
+    ) !important;
+    image-rendering: pixelated;
+    box-shadow: 0 0 0 1px rgba(71, 52, 44, 0.25) !important;
+  }
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    background: currentColor !important;  /* draw X using #47342c */
+  }
+}
+
+/* === Force hamburger (three lines) to #47342c on desktop & mobile === */
+.hamburger { color: #47342c !important; }
+/* If lines are spans or elements inside */
+.hamburger span,
+.hamburger .line { background: #47342c !important; }
+/* If lines are drawn with pseudo-elements */
+.hamburger::before,
+.hamburger::after { background: #47342c !important; }
+/* If it's an SVG icon */
+.hamburger svg,
+.hamburger svg * { stroke: #47342c !important; fill: #47342c !important; }
+
+/* === Thicker hamburger lines & close X (3px) === */
+/* Desktop & Mobile: hamburger three bars */
+.hamburger span,
+.hamburger .line,
+.hamburger::before,
+.hamburger::after {
+  height: 3px !important;
+}
+
+/* If the icon is an SVG */
+.hamburger svg,
+.hamburger svg * {
+  stroke-width: 3px !important;
+}
+
+/* Mobile open state: ensure our drawn X uses 3px thickness */
+@media (max-width: 768px) {
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    height: 3px !important;
+  }
+}
+
+/* === Mobile close button uses CTA style (square) === */
+@media (max-width: 768px) {
+  .menu-toggle:checked + .hamburger {
+    /* Square, no rounded corners or pixel clip */
+    border-radius: 0 !important;
+    -webkit-clip-path: none !important;
+    clip-path: none !important;
+
+    /* Adopt CTA visual style */
+    background: linear-gradient(90deg, #3AA0FF 0%, #0A4FBF 100%) !important !important;
+    border: 2px solid #ffffff !important !important;
+    box-shadow: none !important !important;
+    
+    color: #47342c !important; /* X inherits this */
+  }
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    background: currentColor !important;
+    height: 3px !important; /* keep thicker X */
+  }
+}
+
+/* === Mobile close button: smaller square with 2px rounded corners === */
+@media (max-width: 768px) {
+  .menu-toggle:checked + .hamburger {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 2px !important;
+  }
+  /* Keep the X centered inside regardless of new size */
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    height: 3px !important;
+    /* position remains centered via existing translate(-50%, -50%) or 50% rules */
+  }
+}
+
+/* === Fix desktop dropdown top-gap (desktop only) === */
+@media (min-width: 769px) {
+  .menu-panel {
+    padding-top: 20px !important; /* reduce large mobile-oriented top padding */
+  }
+}
+
+/* === Mobile: nudge close 'X' to perfect center === */
+@media (max-width: 768px) {
+  /* Center container via flex in case absolute math differs per device DPR */
+  .menu-toggle:checked + .hamburger {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  /* Slight vertical tweak (1px) to counter optical/top-heavy placement */
+  .menu-toggle:checked + .hamburger::before,
+  .menu-toggle:checked + .hamburger::after {
+    margin-top: 1px !important;
+  }
+}

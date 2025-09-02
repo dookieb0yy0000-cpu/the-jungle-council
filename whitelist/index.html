@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apply for a whitelist spot</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- Retro pixel styles are scoped to this page only -->
+  <style>
+    @font-face {
+      font-family: 'PressStart2P';
+      src: url('../minigame/assets/PressStart2P.ttf') format('truetype');
+      font-display: swap;
+    }
+    :root {
+      --px-dark:#173a2b;
+      --px-mid:#2f5e45;
+      --px-light:#bfe6d8;
+      --px-edge:#6aa36f;
+      --px-accent:#2ea043;
+    }
+    html, body { min-height:100%; }
+    body {
+      background-image: url("bg.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:1.25rem;
+      padding: clamp(24px, 4vw, 48px);
+      image-rendering: pixelated;
+    }
+    .px-title {
+      font-family: 'PressStart2P', monospace;
+      font-size: clamp(18px, 2.2vw, 28px);
+      color: #3a2316;
+      text-shadow: 0 3px 0 rgba(255,255,255,.7), 0 6px 0 rgba(0,0,0,.08);
+      letter-spacing: 2px;
+      margin: .5rem 0 1rem;
+      text-align:center;
+    }
+    .px-card {
+      width:min(720px, 95vw);
+      background: rgba(255,255,255,0.7);
+      border: 4px solid var(--px-edge);
+      border-radius: 12px;
+      box-shadow:
+        0 0 0 4px rgba(0,0,0,.06) inset,
+        0 8px 0 0 rgba(0,0,0,.15);
+      padding: clamp(12px, 2.5vw, 24px);
+      backdrop-filter: blur(2px);
+    }
+    .field {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background: #e8f6ef;
+      border: 4px solid var(--px-edge);
+      border-radius: 12px;
+      box-shadow: 0 4px 0 0 rgba(0,0,0,.15);
+      padding: 14px 16px;
+      margin: 12px 0;
+    }
+    .label {
+      font-family: 'PressStart2P', monospace;
+      font-size: 12px;
+      color: var(--px-mid);
+      white-space:nowrap;
+    }
+    .field input {
+      flex:1 1 auto;
+      border:0;
+      outline:none;
+      background:transparent;
+      font-family: 'PressStart2P', monospace;
+      font-size: 12px;
+      color: #153728;
+    }
+    .hint {
+      font-family: 'PressStart2P', monospace;
+      font-size: 10px;
+      color: var(--px-mid);
+      opacity:.85;
+      margin: -6px 4px 10px;
+    }
+    .px-btn {
+      width:100%;
+      border:4px solid var(--px-dark);
+      background: linear-gradient(#7ed39a,#45a86a);
+      color:#0b281d;
+      font-family:'PressStart2P', monospace;
+      font-size:14px;
+      border-radius:10px;
+      padding: 16px 18px;
+      box-shadow: 0 6px 0 #0b281d;
+      letter-spacing:1px;
+      cursor:not-allowed;
+      opacity:.6;
+      transition: transform .05s ease, box-shadow .05s ease, opacity .15s ease;
+    }
+    .px-btn.enabled { cursor:pointer; opacity:1; }
+    .px-btn.enabled:active { transform: translateY(2px); box-shadow: 0 4px 0 #0b281d; }
+    .msg { display:none; margin-top:10px; font-family:'PressStart2P', monospace; font-size:11px; }
+    .msg.ok { color:#155e3e; }
+    .msg.err{ color:#8b1e1e; }
+    
+
+
+  /* Thicker 2px pixel-outline + subtle drop shadow */
+  .px-title {
+    color: #3a2316 !important;
+    text-shadow:
+      /* 1px ring */
+      -1px 0 0 #fff3df,
+       1px 0 0 #fff3df,
+       0 -1px 0 #fff3df,
+       0  1px 0 #fff3df,
+      -1px -1px 0 #fff3df,
+       1px -1px 0 #fff3df,
+      -1px  1px 0 #fff3df,
+       1px  1px 0 #fff3df,
+      /* 2px ring */
+      -2px 0 0 #fff3df,
+       2px 0 0 #fff3df,
+       0 -2px 0 #fff3df,
+       0  2px 0 #fff3df,
+      -2px -2px 0 #fff3df,
+       2px -2px 0 #fff3df,
+      -2px  2px 0 #fff3df,
+       2px  2px 0 #fff3df,
+      /* soft drop */
+       0   4px 0 rgba(0,0,0,.12);
+  }
+
+
+  /* === Theming Overrides === */
+  /* Title: keep text #3a2316, switch outline to mossy cream/green */
+  .px-title {
+    color: #3a2316 !important;
+    text-shadow:
+      /* 1px ring (soft cream) */
+      -1px 0 0 #fff3df, 1px 0 0 #fff3df, 0 -1px 0 #fff3df, 0 1px 0 #fff3df,
+      -1px -1px 0 #fff3df, 1px -1px 0 #fff3df, -1px 1px 0 #fff3df, 1px 1px 0 #fff3df,
+      /* 2px ring (mossy tint) */
+      -2px 0 0 #cfe9da, 2px 0 0 #cfe9da, 0 -2px 0 #cfe9da, 0 2px 0 #cfe9da,
+      -2px -2px 0 #cfe9da, 2px -2px 0 #cfe9da, -2px 2px 0 #cfe9da, 2px 2px 0 #cfe9da,
+      /* soft drop */
+      0 4px 0 rgba(0,0,0,.12);
+  }
+
+  /* Card + fields: match #3a2316 accents */
+  .px-card {
+    border-color: #3a2316 !important;
+    box-shadow: 0 0 0 4px rgba(58,35,22,.06) inset, 0 8px 0 0 rgba(58,35,22,.18) !important;
+    background: rgba(255, 250, 246, 0.82) !important; /* warm parchment */
+  }
+  .field {
+    border-color: #3a2316 !important;
+    background: #fff6ef !important;
+    box-shadow: 0 4px 0 0 rgba(58,35,22,.18) !important;
+  }
+  .label {
+    color: #3a2316 !important;
+  }
+  .field input {
+    color: #2b1b10 !important;
+  }
+
+  /* Button: brown theme to match title */
+  .px-btn {
+    border-color: #2a180f !important;
+    background: linear-gradient(#8a6141,#3a2316) !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 0 #2a180f !important;
+  }
+  .px-btn.enabled:active {
+    box-shadow: 0 4px 0 #2a180f !important;
+  }
+
+  /* Focus styles for accessibility */
+  .field input:focus-visible, .px-btn:focus-visible {
+    outline: 2px dashed #3a2316;
+    outline-offset: 3px;
+  }
+
+
+  /* Enforce Press Start 2P on form elements */
+  .label, .field input, .hint { font-family: 'PressStart2P', monospace !important; }
+  .hint { font-size: 10px !important; letter-spacing: 0 !important; }
+  .field input::placeholder { font-family: 'PressStart2P', monospace; }
+
+
+  /* Hint color override */
+  .hint { color: #3a2316 !important; }
+
+
+  /* Final hint color (lighter brown, ~85% opacity) */
+  .hint { color: rgba(90, 58, 37, 0.85) !important; }
+
+
+  /* === Center hero vertically & horizontally === */
+  html, body { height: 100%; min-height: 100vh; }
+  body {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* vertical center */
+    padding: 2rem 1rem !important;
+    gap: 1rem;
+  }
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 4rem); /* safe area for fixed elements */
+    width: min(760px, 95vw);
+    gap: 1rem;
+  }
+  /* Keep hamburger/menu above, hero stays clickable */
+  .hamburger, .menu-panel, #menu-toggle { position: fixed; z-index: 1200; }
+  .hero, .px-card, .px-title { position: relative; z-index: 1000; }
+  #menu-toggle:not(:checked) ~ .menu-panel { pointer-events: none; opacity: 0; }
+  #menu-toggle:checked ~ .menu-panel { pointer-events: auto; }
+  @media (max-height: 560px) {
+    body { justify-content: flex-start; padding-top: 3.5rem !important; }
+    .hero { min-height: auto; }
+  }
+
+
+  /* Bigger, all-caps title */
+  .px-title {
+    text-transform: uppercase !important;
+    font-size: clamp(26px, 3.4vw, 44px) !important;
+    letter-spacing: 2px;
+  }
+
+
+  .wl-bullets {
+    list-style: disc;
+    margin: 0.5rem 0 1rem 1.2rem;
+    padding: 0;
+    color: #3a2316;
+    font-family: 'PressStart2P', monospace;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .wl-bullets li { margin: 0.25rem 0; }
+
+
+  /* === Robust viewport centering for hero (title + bullets + form) === */
+  html, body { height: 100%; min-height: 100svh; }
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: grid !important;
+    place-items: center !important; /* center both axes */
+  }
+  @supports not (place-items: center) {
+    body {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+  }
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: min(780px, 95vw);
+    text-align: center;
+    padding: 1rem;
+  }
+  /* Keep hamburger/menu on top; do not block hero clicks */
+  .hamburger, .menu-panel, #menu-toggle { position: fixed; z-index: 1200; }
+  .hero, .px-card, .px-title { position: relative; z-index: 1000; }
+  #menu-toggle:not(:checked) ~ .menu-panel { pointer-events: none; opacity: 0; }
+  #menu-toggle:checked ~ .menu-panel { pointer-events: auto; }
+
+
+  /* Shift hero up by 20px */
+  .hero { transform: translateY(-20px) !important; }
+
+
+  /* Left-align bullets and text */
+  .wl-bullets { 
+    text-align: left !important; 
+    align-self: stretch !important; 
+    width: 100% !important; 
+    margin-left: 1.25rem !important; 
+    list-style-position: outside !important;
+  }
+  .wl-bullets li { text-align: left !important; }
+
+  /* Shift hero up by an additional 20px (total -40px) */
+  .hero { transform: translateY(-40px) !important; }
+
+
+  /* === Responsive autoscaling across resolutions === */
+  :root {
+    --title-min: 24px;
+    --title-vw: 3.6vw;
+    --title-max: 56px;
+    --text-min: 10px;
+    --text-vw: 1.15vw;
+    --text-max: 14px;
+    --hint-min: 9px;
+    --hint-vw: 0.95vw;
+    --hint-max: 12px;
+  }
+  .px-title {
+    font-size: clamp(var(--title-min), var(--title-vw), var(--title-max)) !important;
+    letter-spacing: 2px;
+  }
+  .px-card { width: min(820px, 94vw) !important; }
+  .hero { width: min(820px, 96vw) !important; gap: clamp(10px, 1.6vw, 22px) !important; }
+  .field { padding: clamp(10px, 1.3vw, 18px) clamp(12px, 1.6vw, 22px) !important; }
+  .field input { font-size: clamp(var(--text-min), var(--text-vw), var(--text-max)) !important; }
+  .label { font-size: clamp(10px, 1vw, 12px) !important; }
+  .px-btn { padding: clamp(12px, 1.6vw, 18px) clamp(14px, 2vw, 22px) !important;
+            font-size: clamp(12px, 1.4vw, 16px) !important; }
+  .wl-bullets { font-size: clamp(10px, 1vw, 13px) !important; }
+  .hint { font-size: clamp(var(--hint-min), var(--hint-vw), var(--hint-max)) !important; }
+
+  /* Very small screens: tighten spacing and offset */
+  @media (max-width: 420px) {
+    .wl-bullets { margin-left: 1rem !important; }
+    .px-title { letter-spacing: 1px; }
+  }
+
+  /* Short screens: relax the upward offset so content never clips */
+  @media (max-height: 620px) {
+    body { place-items: start center !important; }
+    .hero { transform: translateY(-16px) !important; padding-top: 48px; }
+  }
+
+
+  /* === Mobile overflow fixes & extra vertical shift === */
+  html, body { overflow-x: hidden !important; }
+  .hero, .px-card, .field, .field input, .wl-bullets { box-sizing: border-box; }
+  .px-card, .hero { max-width: 94vw !important; width: 100% !important; }
+  .field { width: 100% !important; }
+  .field input { min-width: 0; width: 100% !important; overflow-wrap: anywhere; word-break: break-word; }
+  .wl-bullets { width: 100% !important; }
+
+  @media (max-width: 600px) {
+    .hero { max-width: 92vw !important; width: 92vw !important; transform: translateY(-60px) !important; }
+    .px-card { max-width: 92vw !important; width: 100% !important; padding-left: 12px !important; padding-right: 12px !important; }
+    .wl-bullets { 
+      margin-left: 0.5rem !important; 
+      padding-left: 1rem !important; 
+      list-style-position: inside !important;
+      text-align: left !important;
+    }
+    .label { font-size: clamp(10px, 3.4vw, 12px) !important; }
+    .field input { font-size: clamp(10px, 3.5vw, 14px) !important; }
+    .px-btn { font-size: clamp(12px, 3.8vw, 16px) !important; }
+  }
+
+
+  /* Labels above fields */
+  .label.label-top {
+    display: block;
+    margin: 0 0 6px 6px;
+    font-family: 'PressStart2P', monospace;
+    font-size: 12px;
+    color: #3a2316;
+    letter-spacing: .5px;
+  }
+  /* When labels are outside, fields don't need center alignment */
+  .field { align-items: stretch; }
+
+
+  /* Force left alignment for top labels */
+  .hero .label.label-top {
+    text-align: left !important;
+    align-self: flex-start !important;
+    margin-left: 6px !important;
+  }
+  /* Ensure the card's content isn't center-forced */
+  .px-card { text-align: left !important; }
+
+
+/* Extra mobile lift: shift hero up by additional 20px */
+@media (max-width: 600px) {
+  .hero { transform: translateY(-80px) !important; }
+}
+
+
+/* === Mobile overflow fixes & bullet alignment === */
+html, body { overflow-x: hidden !important; }
+.hero, .px-card, .field, .field input, .wl-bullets { box-sizing: border-box; }
+.px-card, .hero { max-width: 94vw !important; width: 100% !important; }
+.field { width: 100% !important; }
+.field input { min-width: 0; width: 100% !important; overflow-wrap: anywhere; word-break: break-word; }
+.wl-bullets { width: 100% !important; }
+
+@media (max-width: 600px) {
+  .hero { max-width: 92vw !important; width: 92vw !important; } /* keep existing translateY(-80px) */
+  .px-card { max-width: 92vw !important; width: 100% !important; padding-left: 12px !important; padding-right: 12px !important; }
+  .wl-bullets { 
+    margin-left: 0.5rem !important; 
+    padding-left: 1rem !important; 
+    list-style-position: inside !important;
+    text-align: left !important;
+  }
+}
+
+
+/* === Auto-scale inject (safe, minimal) === */
+* , *::before, *::after { box-sizing: border-box; }
+html, body { max-width: 100%; overflow-x: hidden; }
+img, svg, canvas, video { max-width: 100%; height: auto; }
+.main, main, section, article, .container, .content, .wrapper { max-width: 100%; margin-left: auto; margin-right: auto; }
+
+
+/* === Whitelist page: recenter + larger bullets + mobile offset === */
+html, body { height: 100%; min-height: 100svh; }
+body {
+  display: grid !important;
+  place-items: center !important;   /* center both axes */
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.hero {
+  transform: none !important;       /* cancel any previous shifts */
+  width: min(820px, 96vw) !important;
+  margin: 0 auto !important;
+}
+/* Larger bullet font with comfy leading */
+.wl-bullets { font-size: clamp(12px, 1.7vw, 18px) !important; line-height: 1.7 !important; }
+
+/* Mobile-only: move hero DOWN by 40px */
+@media (max-width: 600px) {
+  .hero { transform: translateY(40px) !important; }
+}
+
+</style>
+</head>
+<body>
+  <!-- === Hamburger CTA Menu (copied) === -->
+  <input id="menu-toggle" class="menu-toggle" type="checkbox" aria-label="Toggle menu">
+  <label for="menu-toggle" class="hamburger" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </label>
+  <nav class="menu-panel" aria-label="Main">
+    <ul>
+      <li><a class="cta-home" href="../index.html">Home</a></li>
+      <li><a class="cta-whitepaper" href="../whitepaper.pdf">Whitepaper</a></li>
+      
+      <li><a class="cta-whitelist" href="index.html">Whitelist</a></li>
+      <li><a class="cta-opensea" href="https://opensea.io/collection/the-jungle-council">OpenSea</a></li>
+      <li><a class="cta-x" href="https://x.com/tjcnft">Follow on X</a></li>
+      <li><a class="cta-minigame" href="../minigame/game.html">Minigame</a></li>
+      <li><a class="cta-jungle" href="../memecoin/index.html">$JUNGLE</a></li>
+    </ul>
+  </nav>
+  <!-- === End Menu === -->
+
+  <main class="hero">
+  <h1 class="px-title">APPLY FOR A WHITELIST SPOT</h1>
+    <ul class="wl-bullets">
+      <li>Whitelist allows you 2 FREE mints per wallet</li>
+      <li>Whitelist is limited, submitting this form does not guarantee you a spot</li>
+      <li>Alts will be purged, do not resubmit twice</li>
+    </ul>
+    
+
+  <form id="wl-form" class="px-card" novalidate>
+    <label for="x_handle" class="label label-top">X HANDLE</label>
+<div class="field"><input id="x_handle" name="x_handle" placeholder="your x handle" required  autocomplete="off" aria-label="Your X handle" pattern="^@?[A-Za-z0-9_]{1,15}$" title="Use @handle or handle (letters, numbers, underscore, 1–15 chars)" required></div>
+    <div class="hint">Example: @yourname</div>
+
+    <label for="base_address" class="label label-top">BASE ADDRESS</label>
+<div class="field"><input id="base_address" name="base_address" placeholder="your base address" required  autocomplete="off" aria-label="Your Base address" pattern="^0x[a-fA-F0-9]{40}$" title="Must start with 0x and have exactly 40 hex chars after" required></div>
+    <div class="hint">Example: 0x... </div>
+
+    <button id="submitBtn" class="px-btn" type="submit" disabled>SUBMIT</button>
+    <div id="ok" class="msg ok">OK! submitted.</div>
+    <div id="err" class="msg err">Error. Try again.</div>
+  </form>
+</main>
+
+  <!-- How to connect to Google Sheets:
+    1) In Google Sheets → Extensions → Apps Script, add:
+       function doPost(e){const ss=SpreadsheetApp.getActive();
+         const sh=ss.getSheetByName('Form')||ss.insertSheet('Form');
+         const d=JSON.parse(e.postData.contents), row=[new Date(), d.x_handle||'', d.base_address||''];
+         sh.appendRow(row); return ContentService.createTextOutput('OK');}
+    2) Deploy → New deployment → Web app → Execute as Me → Access: Anyone. Copy the Web app URL.
+    3) Paste that URL into SCRIPT_URL below.
+  -->
+  
+
+
+
+<script>
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw0ZIabPFYASPArZsr4iSduf6YSv1nax9Kuud6fV6DmDxbDkFL9CY7qp8SMVrhlYiR24w/exec";
+  const form = document.getElementById('wl-form');
+  const xInput = document.getElementById('x_handle');
+  const addrInput = document.getElementById('base_address');
+  const btn = document.getElementById('submitBtn');
+  const ok = document.getElementById('ok');
+  const err = document.getElementById('err');
+
+  function validate() {
+    const x = (xInput && xInput.value ? xInput.value : '').trim();
+    const a = (addrInput && addrInput.value ? addrInput.value : '').trim();
+    const xOk = /^@?[A-Za-z0-9_]{1,15}$/.test(x);
+    const aOk = /^0x[a-fA-F0-9]{40}$/.test(a);
+    if (xOk && aOk) { btn.removeAttribute('disabled'); btn.classList.add('enabled'); }
+    else { btn.setAttribute('disabled','disabled'); btn.classList.remove('enabled'); }
+  }
+
+  ['input','change','keyup','paste'].forEach(function(ev){
+    xInput.addEventListener(ev, validate);
+    addrInput.addEventListener(ev, validate);
+  });
+  window.addEventListener('DOMContentLoaded', validate);
+  window.addEventListener('load', validate);
+
+  var submitting = false;
+  function postViaHiddenForm(xHandle, baseAddr) {
+    var iframe = document.getElementById('wl_sink_iframe');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.name = 'wl_sink_iframe';
+      iframe.id = 'wl_sink_iframe';
+      document.body.appendChild(iframe);
+    }
+    var f = document.createElement('form');
+    f.style.display = 'none';
+    f.method = 'POST';
+    f.action = SCRIPT_URL;
+    f.target = 'wl_sink_iframe';
+
+    var in1 = document.createElement('input');
+    in1.name = 'xHandle'; in1.value = xHandle;
+    var in2 = document.createElement('input');
+    in2.name = 'baseAddr'; in2.value = baseAddr;
+
+    f.appendChild(in1); f.appendChild(in2);
+    document.body.appendChild(f);
+    f.submit();
+    setTimeout(function(){ try { document.body.removeChild(f); } catch(e){} }, 1200);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    validate();
+    if (btn.hasAttribute('disabled')) return;
+    if (submitting) return;
+    submitting = true;
+    ok.style.display = 'none'; err.style.display = 'none';
+
+    var x = xInput.value.trim();
+    var a = addrInput.value.trim();
+
+    try { postViaHiddenForm(x, a); } catch(e) {}
+
+    ok.style.display = 'block';
+    btn.textContent = 'Submitted';
+    btn.setAttribute('disabled','disabled');
+
+    setTimeout(function(){
+      form.reset();
+      btn.textContent = 'Submit';
+      btn.setAttribute('disabled','disabled');
+      btn.classList.remove('enabled');
+      submitting = false;
+    }, 600);
+  }
+
+  if (!window.__WL_INIT__) {
+    window.__WL_INIT__ = true;
+    form.addEventListener('submit', handleSubmit);
+  }
+</script>
+
+
+
+
+</body>
+</html>
